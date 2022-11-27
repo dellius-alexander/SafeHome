@@ -1,22 +1,27 @@
-package System;
+package com.example.safehome.System;
+
+import android.location.Address;
+import android.provider.ContactsContract;
+
+import java.util.List;
 
 public interface IUser {
 
-	string getName();
+	String getName();
 
 	/**
 	 * 
 	 * @param name
 	 */
-	void setName(string name);
+	void setName(String name);
 
-	string getEmail();
+	String getEmail();
 
 	/**
 	 * 
 	 * @param email
 	 */
-	void setEmail(string email);
+	void setEmail(String email);
 
 	List<Address> getAddresses();
 
@@ -34,13 +39,13 @@ public interface IUser {
 	 */
 	void setSystemIDs(List<String> systemIDs);
 
-	List<Phone> getPhones();
+	List<ContactsContract.CommonDataKinds.Phone> getPhones();
 
 	/**
 	 * 
 	 * @param phones
 	 */
-	void setPhones(List<Phone> phones);
+	void setPhones(List<ContactsContract.CommonDataKinds.Phone> phones);
 
 	/**
 	 * 
@@ -52,7 +57,7 @@ public interface IUser {
 	 * 
 	 * @param phones
 	 */
-	void setPhones1(List<Phone> phones);
+	void setPhones1(List<ContactsContract.CommonDataKinds.Phone> phones);
 
 	/**
 	 * 
@@ -64,7 +69,7 @@ public interface IUser {
 	 * 
 	 * @param phones
 	 */
-	void setPhones2(List<Phone> phones);
+	void setPhones2(List<ContactsContract.CommonDataKinds.Phone> phones);
 
 	/**
 	 * 
@@ -76,6 +81,6 @@ public interface IUser {
 	 * 
 	 * @param phones
 	 */
-	void setPhones4(List<Phone> phones);
+	void setPhones4(List<ContactsContract.CommonDataKinds.Phone> phones);
 
 }

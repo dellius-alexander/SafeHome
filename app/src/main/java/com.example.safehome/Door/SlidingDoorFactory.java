@@ -1,4 +1,16 @@
-package Door;
+package com.example.safehome.Door;
 
-public class SlidingDoorFactory extends DoorFactory {
+import com.example.safehome.Door.Door;
+
+public class SlidingDoorFactory implements DoorFactory<Door> {
+    /**
+     * FactoryMethod returns class of type Door.
+     *
+     * @param request
+     * @return FactoryMethod returns class of type Door.
+     */
+    @Override
+    public Door factoryMethod(Door request) {
+        return null;
+    }
 }

@@ -8,6 +8,11 @@ public interface KeyPad {
 	 */
 	void readKeyStrokes(String keyStrokes);
 
+	/**
+	 * Decodes keystroke to to utf-8 encoding
+	 * @return
+	 */
 	String decodeKey();
+
 
 }

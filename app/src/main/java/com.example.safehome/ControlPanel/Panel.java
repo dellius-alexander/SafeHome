@@ -1,4 +1,4 @@
-package ControlPanel;
+package com.example.safehome.ControlPanel;
 
 public interface Panel extends KeyPad {
 
@@ -8,12 +8,12 @@ public interface Panel extends KeyPad {
 	 * 
 	 * @param mode
 	 */
-	abstract boolean darkMode(string mode);
+	abstract boolean darkMode(String mode);
 
 	/**
 	 * 
 	 * @param msg
 	 */
-	abstract boolean sendControlMsg(string msg);
+	abstract boolean sendControlMsg(String msg);
 
 }

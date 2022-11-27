@@ -109,8 +109,18 @@ public interface FPlan {
 
 	<FType> FType type();
 
+	/**
+	 * Returns a map of coordinates and their corresponding wall segment.
+	 * @param <Coordinates> the coordinates for the wall segment
+	 * @param <Wall> the wall segment
+	 * @return a map of wall segments
+	 */
 	<Coordinates, Wall> Map<Coordinates, Wall> walls();
 
+	/**
+	 * Defines the dimensions of the floor plan.
+	 * @return
+	 */
 	String dimensions();
 
 }
