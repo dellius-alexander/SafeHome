@@ -1,4 +1,4 @@
-package Camera;
+package com.example.safehome.Camera;
 
 public interface Storage {
 
