@@ -1,6 +1,10 @@
-package Door;
+package com.example.safehome.Door;
 
-public abstract class IDoorInfo {
+import com.example.safehome.Door.DType;
+
+
+
+public interface IDoorInfo {
 
 	/**
 	 * 
@@ -10,46 +14,46 @@ public abstract class IDoorInfo {
 	 * @param nextWall
 	 * @param symbol
 	 */
-	public abstract void DoorInfo(string type, string startCoordinates, string stopCoordinates, string nextWall, Symbol symbol);
+	public void DoorInfo(String type, String startCoordinates, String stopCoordinates, String nextWall, Symbol symbol);
 
-	public abstract void getType();
+	public void getType();
 
 	/**
 	 * 
 	 * @param Type
 	 */
-	public abstract void setType(DType Type);
+	public void setType(DType Type);
 
-	public abstract void getStartCoordinates();
+	public void getStartCoordinates();
 
 	/**
 	 * 
 	 * @param startCoordinates
 	 */
-	public abstract void setStartCoordinates(string startCoordinates);
+	public void setStartCoordinates(String startCoordinates);
 
-	public abstract void getStopCoordniates();
+	public void getStopCoordniates();
 
 	/**
 	 * 
 	 * @param stopCoordniates
 	 */
-	public abstract void setStopCoordniates(string stopCoordniates);
+	public void setStopCoordniates(String stopCoordniates);
 
-	public abstract void getNextWall();
+	public void getNextWall();
 
 	/**
 	 * 
 	 * @param nextWall
 	 */
-	public abstract void setNextWall(string nextWall);
+	public void setNextWall(String nextWall);
 
-	public abstract Symbol getSymbol();
+	public Symbol getSymbol();
 
 	/**
 	 * 
 	 * @param symbol
 	 */
-	public abstract void setSymbol(Symbol symbol);
+	public void setSymbol(Symbol symbol);
 
 }

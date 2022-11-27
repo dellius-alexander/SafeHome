@@ -1,4 +1,4 @@
-package System;
+package com.example.safehome.System;
 
 public interface ISystem {
 
@@ -21,7 +21,7 @@ public interface ISystem {
 	 * 
 	 * @param queryString
 	 */
-	string query(string queryString);
+	String query(String queryString);
 
 	/**
 	 * arm the system

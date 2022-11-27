@@ -1,4 +1,6 @@
-package ControlPanel;
+package com.example.safehome.ControlPanel;
+
+import java.util.List;
 
 public abstract class MobilePhone<controlPanelMomentoList extends List<ControlPanelMomento>> {
 

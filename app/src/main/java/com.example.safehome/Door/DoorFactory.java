@@ -1,4 +1,8 @@
-package Door;
+package com.example.safehome.Door;
 
-public abstract class DoorFactory extends AbstractFactory {
+import com.example.safehome.AbstractFactory;
+
+public interface DoorFactory<Object> extends AbstractFactory<Object> {
+
+
 }

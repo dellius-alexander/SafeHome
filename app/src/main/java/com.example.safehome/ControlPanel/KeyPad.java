@@ -1,4 +1,4 @@
-package ControlPanel;
+package com.example.safehome.ControlPanel;
 
 public abstract interface KeyPad {
 
@@ -6,8 +6,8 @@ public abstract interface KeyPad {
 	 * 
 	 * @param keyStrokes
 	 */
-	abstract void readKeyStrokes(string keyStrokes);
+	abstract void readKeyStrokes(String keyStrokes);
 
-	abstract string decodeKey();
+	abstract String decodeKey();
 
 }

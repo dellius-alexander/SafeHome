@@ -1,4 +1,4 @@
-package System;
+package com.example.safehome.System;
 
 public class SingletonSystem {
 
