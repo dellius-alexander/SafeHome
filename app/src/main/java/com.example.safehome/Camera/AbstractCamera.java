@@ -1,5 +1,5 @@
-package Camera;
-
+package com.example.safehome.Camera;
+import com.example.safehome.Camera.Storage;
 /**
  * Defines the type of camera used in the security system.
  */

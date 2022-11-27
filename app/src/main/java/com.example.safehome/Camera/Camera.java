@@ -1,40 +1,40 @@
-package Camera;
+package com.example.safehome.Camera;
 
 public class Camera {
 
 	/**
 	 * camera id
 	 */
-	private string id = null;
-	private string type = null;
+	private String id = null;
+	private String type = null;
 	/**
 	 * camera location
 	 */
-	private string location = null;
-	private string fieldOfView = null;
-	private boolean twoWayAudio = null;
-	private boolean nightVision = null;
-	private string resolution = null;
+	private String location = null;
+	private String fieldOfView = null;
+	private boolean twoWayAudio;
+	private boolean nightVision;
+	private String resolution = null;
 	/**
 	 * Defaults to false.
 	 */
 	private boolean hasPushNotifications = false;
-	private string connectivity = null;
-	private ConcreteCamera state;
+	private String connectivity = null;
+	private Camera state;
 	/**
 	 * Defines the storage object.
 	 */
 	private Storage storage = null;
 
-	public void setType(string type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
-	public void setState(ConcreteCamera state) {
+	public void setState(Camera state) {
 		this.state = state;
 	}
 
-	public ConcreteCamera saveState() {
+	public Camera saveState() {
 		// TODO - implement Camera.saveState
 		throw new UnsupportedOperationException();
 	}
