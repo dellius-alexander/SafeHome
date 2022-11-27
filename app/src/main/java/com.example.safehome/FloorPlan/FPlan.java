@@ -1,4 +1,6 @@
-package FloorPlan;
+package com.example.safehome.FloorPlan;
+
+import java.util.Map;
 
 /**
  * How To Read A Floor Plan?
@@ -103,12 +105,12 @@ package FloorPlan;
  * Layouts for the rooms in the house help you know the kind of dynamics you have available to play around with as a designer. If layout details are not available on the floorplan, try and visualize how things will look and what proportions you believe would be convenient and compliment the space simultaneously.
  * If you do notice layout details and plans, think about how they are placed and their size. Figure out the sunlight and air movement in the space. You may want to make modifications and adjustments accordingly. The key is to blend functionality and aesthetics equally.
  */
-public abstract interface FPlan {
+public interface FPlan {
 
-	abstract FType type();
+	<FType> FType type();
 
-	abstract Map<Coordinates, Wall> walls();
+	<Coordinates, Wall> Map<Coordinates, Wall> walls();
 
-	abstract string dimensions();
+	String dimensions();
 
 }

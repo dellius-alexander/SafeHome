@@ -1,16 +1,16 @@
-package Sensors;
+package com.example.safehome.Sensors;
 
 public interface ISensorInfo {
 
-	string toString();
+	String toString();
 
-	string getName();
+	String getName();
 
 	/**
 	 * 
 	 * @param name
 	 */
-	void setName(string name);
+	void setName(String name);
 
 	SType getType();
 
@@ -18,31 +18,31 @@ public interface ISensorInfo {
 	 * 
 	 * @param type
 	 */
-	void setType(string type);
+	void setType(String type);
 
-	string getLocation();
+	String getLocation();
 
 	/**
 	 * 
 	 * @param location
 	 */
-	void setLocation(string location);
+	void setLocation(String location);
 
-	string getArea();
+	String getArea();
 
 	/**
 	 * 
 	 * @param area
 	 */
-	void setArea(string area);
+	void setArea(String area);
 
-	string getCharacteristics();
+	String getCharacteristics();
 
 	/**
 	 * 
 	 * @param characteristics
 	 */
-	void setCharacteristics(string characteristics);
+	void setCharacteristics(String characteristics);
 
 	/**
 	 * used to supply a SensorMemento.class in response to a caretaker (aka a Sensor.class) request. It contains the current state of the Originator (SensorInfo.class) object.
@@ -61,4 +61,5 @@ public interface ISensorInfo {
 	 */
 	void setState(SensorInfo newState);
 
+	String getConfiguration();
 }
