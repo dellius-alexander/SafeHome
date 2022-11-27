@@ -35,7 +35,7 @@ public class Camera {
 	}
 	/**
 	 * Saves a new state of the Object.
-	 * @param state the Object state to save
+	 * @param newState the Object state to save
 	 */
 	public void setState(Camera newState) {
 		this.state = newState;

@@ -9,18 +9,12 @@ public interface AbstractCamera {
 	/**
 	 * Defines the type of camera used in the security system.
 	 */
-	String type() {
-		// TODO - implement AbstractCamera.type
-		throw new UnsupportedOperationException();
-	}
+	String type();
 
 	/**
 	 * The location of the camera.
 	 */
-	String location() {
-		// TODO - implement AbstractCamera.location
-		throw new UnsupportedOperationException();
-	}
+	String location();
 
 	/**
 	 * What is the field of view of the camera:
@@ -30,26 +24,17 @@ public interface AbstractCamera {
 	 * 130 Degrees
 	 * and so on...
 	 */
-	String fieldOfView() {
-		// TODO - implement AbstractCamera.fieldOfView
-		throw new UnsupportedOperationException();
-	}
+	String fieldOfView();
 
 	/**
 	 * Does the camera have two-way audio functionality.
 	 */
-	boolean twoWayAudio() {
-		// TODO - implement AbstractCamera.twoWayAudio
-		throw new UnsupportedOperationException();
-	}
+	boolean twoWayAudio();
 
 	/**
 	 * Does the camera have night vision capabilities.
 	 */
-	boolean nightVision() {
-		// TODO - implement AbstractCamera.nightVision
-		throw new UnsupportedOperationException();
-	}
+	boolean nightVision();
 
 	/**
 	 * what is the resolution of the camera:
@@ -58,18 +43,12 @@ public interface AbstractCamera {
 	 * 2K
 	 * 4K
 	 */
-	String resolution() {
-		// TODO - implement AbstractCamera.resolution
-		throw new UnsupportedOperationException();
-	}
+	String resolution();
 
 	/**
 	 * Does the camera have push notifications functionality.
 	 */
-	boolean hasPushNotifications() {
-		// TODO - implement AbstractCamera.hasPushNotifications
-		throw new UnsupportedOperationException();
-	}
+	boolean hasPushNotifications();
 
 	/**
 	 * What type of network connectivity function does the camera have?
@@ -79,10 +58,7 @@ public interface AbstractCamera {
 	 * Ethernet
 	 * and so on...
 	 */
-	String connectivity() {
-		// TODO - implement AbstractCamera.connectivity
-		throw new UnsupportedOperationException();
-	}
+	String connectivity();
 
 	/**
 	 * Defines the storage type class used to persist video capture.
@@ -94,9 +70,6 @@ public interface AbstractCamera {
 	 * Local storage: connected to NVR
 	 * and so on...
 	 */
-	Storage storage() {
-		// TODO - implement AbstractCamera.storage
-		throw new UnsupportedOperationException();
-	}
+	Storage storage();
 
 }
