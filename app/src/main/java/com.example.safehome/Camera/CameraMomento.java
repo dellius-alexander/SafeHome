@@ -3,7 +3,7 @@ package com.example.safehome.Camera;
 import com.example.safehome.Momento;
 
 public class CameraMomento implements Momento<Camera> {
-    private final Camera state;
+    private Camera state;
 
     /**
      * Create a momento of the state of on object, save it for

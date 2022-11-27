@@ -1,8 +1,5 @@
 package com.example.safehome.Camera;
 
-import com.example.safehome.Camera.AbstractCamera;
-import com.example.safehome.Camera.Camera;
-
 /**
  * Singleton
  * Intent
@@ -108,21 +105,28 @@ import com.example.safehome.Camera.Camera;
  * The Singleton object can be mutable. Flyweight objects are immutable.
  * Abstract Factories, Builders and Prototypes can all be implemented as Singletons.
  */
-public class SingletonCamera implements Singleton<Camera> {
+public class SingletonCamera {
 
-	private final static Camera instance = null;
+	/**
+	 * Static instance of camera
+	 */
+	private static Camera instance = null;
 
+	/**
+	 * Do not implement constructor method.
+	 */
 	private SingletonCamera() {
 		// TODO - implement SingletonCamera.SingletonCamera
-		 throw new UnsupportedOperationException();
+		 throw new UnsupportedOperationException("Cannot implement constructor.");
 	}
-	public static AbstractCamera getSingletonCamera(){
-		if (instance == null){
-			instance = new Camera();
-			return instance;
-		} else {
-			return instance;
+	/**
+	 * Gets the instance of the singleton object.
+	 * @return returns the singleton object.
+	 */
+	public static AbstractCamera getInstance() {
+		if (SingletonCamera.instance == null){
+			SingletonCamera.instance = new Camera();
 		}
+		return (AbstractCamera) SingletonCamera.instance;
 	}
-
 }

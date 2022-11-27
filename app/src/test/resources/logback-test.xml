@@ -50,7 +50,7 @@ ERROR 	YES 	  YES 	  YES 	YES 	YES 	  NO
     <!--     <appender name="FILE" class="ch.qos.logback.core.FileAppender">-->
     <!--    &lt;!&ndash; use the previously created timestamp to create a uniquely-->
     <!--         named log file &ndash;&gt;-->
-    <!--    <file>${LOG_DIR}/safehome_${dateTimeFormat}.log</file>-->
+    <!--    <file>${LOG_DIR}/qa_safehome_${dateTimeFormat}.log</file>-->
     <!--    <encoder>-->
     <!--      <pattern>%d{HH:mm:ss.SSS} [%t] [%-5level] [%logger{10}.%M][%L] |- %msg%n</pattern>-->
     <!--    </encoder>-->

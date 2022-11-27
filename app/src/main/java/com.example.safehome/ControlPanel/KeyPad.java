@@ -1,13 +1,13 @@
-package ControlPanel;
+package com.example.safehome.ControlPanel;
 
-public abstract interface KeyPad {
+public interface KeyPad {
 
 	/**
-	 * 
+	 * Defines the input from terminal, screen or key pad
 	 * @param keyStrokes
 	 */
-	abstract void readKeyStrokes(string keyStrokes);
+	void readKeyStrokes(String keyStrokes);
 
-	abstract string decodeKey();
+	String decodeKey();
 
 }
