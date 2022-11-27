@@ -108,20 +108,20 @@ import com.example.safehome.Camera.Camera;
  * The Singleton object can be mutable. Flyweight objects are immutable.
  * Abstract Factories, Builders and Prototypes can all be implemented as Singletons.
  */
-public class SingletonCamera implements Singleton {
+public class SingletonCamera implements Singleton<Camera> {
 
-	private Camera instance = null;
+	private final static Camera instance = null;
 
 	private SingletonCamera() {
 		// TODO - implement SingletonCamera.SingletonCamera
 		 throw new UnsupportedOperationException();
 	}
 	public static AbstractCamera getSingletonCamera(){
-		if (this.instance == null){
-			this.instance = new Camera();
-			return this.instance;
+		if (instance == null){
+			instance = new Camera();
+			return instance;
 		} else {
-			return this.instance;
+			return instance;
 		}
 	}
 

@@ -106,7 +106,5 @@ package Camera;
  * Abstract Factories, Builders and Prototypes can all be implemented as Singletons.
  */
 public interface Singleton<Object> {
-
 	Object getInstance();
-
 }
