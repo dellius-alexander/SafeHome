@@ -2,12 +2,9 @@ package com.example.safehome.Camera;
 /**
  * Defines the type of camera used in the security system.
  */
-public class AbstractCamera {
+public interface AbstractCamera {
 
-	String id() {
-		// TODO - implement AbstractCamera.id
-		throw new UnsupportedOperationException();
-	}
+	String id();
 
 	/**
 	 * Defines the type of camera used in the security system.
