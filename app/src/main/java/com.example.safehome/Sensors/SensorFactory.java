@@ -1,4 +1,4 @@
-package Sensors;
+package com.example.safehome.Sensors;
 
-public abstract class SensorFactory extends AbstractFactory {
+public interface SensorFactory extends AbstractFactory {
 }
