@@ -105,7 +105,7 @@ package Camera;
  * The Singleton object can be mutable. Flyweight objects are immutable.
  * Abstract Factories, Builders and Prototypes can all be implemented as Singletons.
  */
-public interface Singleton {
+public interface Singleton<Object> {
 
 	Object getInstance();
 

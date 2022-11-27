@@ -26,26 +26,34 @@ public class Camera {
 	 */
 	private Storage storage = null;
 
+	/**
+	 * Defines the camera type.
+	 * @param type the camera type.
+	 */
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	public void setState(Camera state) {
-		this.state = state;
-	}
-
-	public Camera saveState() {
-		// TODO - implement Camera.saveState
-		throw new UnsupportedOperationException();
-	}
-
 	/**
-	 * 
-	 * @param cameraMomemto
+	 * Saves a new state of the Object.
+	 * @param state the Object state to save
 	 */
-	public void restoreState(CameraMomemto cameraMomemto) {
+	public void setState(Camera newState) {
+		this.state = newState;
+	}
+	/**
+	 * Retrieve the save state of the Object
+	 * @return the saved state of the Object
+	 */
+	public Camera saveState() {
+		return this.state;
+	}
+	/**
+	 * Create a restore state from the CameraMomento.
+	 * @param cameraMomemto the saved state of an Object.
+	 */
+	public void restoreState(CameraMomento cameraMomemto) {
 		// TODO - implement Camera.restoreState
-		throw new UnsupportedOperationException();
+//		throw new UnsupportedOperationException();
 	}
 
 }

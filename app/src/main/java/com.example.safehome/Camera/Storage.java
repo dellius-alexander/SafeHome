@@ -1,13 +1,13 @@
 package com.example.safehome.Camera;
 
-public interface Storage {
+public interface Storage<Object> {
 
 	/**
 	 * 
 	 * @param storage
 	 */
-	void addStorage(Storage storage);
+	void addStorage(Object storage);
 
-	Storage getStorage();
+	Object getStorage();
 
 }

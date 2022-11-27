@@ -1,4 +1,7 @@
-package Camera;
+package com.example.safehome.Camera;
+
+import com.example.safehome.Camera.AbstractCamera;
+import com.example.safehome.Camera.Camera;
 
 /**
  * Singleton
@@ -107,11 +110,19 @@ package Camera;
  */
 public class SingletonCamera implements Singleton {
 
-	private ConcreteCamera instance = null;
+	private Camera instance = null;
 
 	private SingletonCamera() {
 		// TODO - implement SingletonCamera.SingletonCamera
-		throw new UnsupportedOperationException();
+		 throw new UnsupportedOperationException();
+	}
+	public static AbstractCamera getSingletonCamera(){
+		if (this.instance == null){
+			this.instance = new Camera();
+			return this.instance;
+		} else {
+			return this.instance;
+		}
 	}
 
 }
