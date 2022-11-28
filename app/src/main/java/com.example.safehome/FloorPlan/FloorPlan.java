@@ -1,5 +1,7 @@
 package com.example.safehome.FloorPlan;
 
+import com.example.safehome.Wall.Coordinates;
+
 import java.util.Map;
 
 public class FloorPlan implements FPlan{
