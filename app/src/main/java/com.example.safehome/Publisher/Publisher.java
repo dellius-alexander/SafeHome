@@ -12,11 +12,13 @@ public class Publisher {
      * @return {@linkplain Boolean}
      */
     public boolean setNotification(Notification notification) {
+
         this.notification = notification;
         // their may be different notification types, we used "open" as this type;
         // more can be added for each type of notification
         this.publisher.notify(notification.getType(), this.notification.data);
         return true;
+
     }
 
     /**
