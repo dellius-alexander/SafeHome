@@ -1,59 +1,54 @@
-package com.example.safehome.Door;
+package com.example.safehome.Door
 
-import com.example.safehome.Door.DType;
+interface IDoorInfo {
+    /**
+     *
+     * @param type
+     * @param startCoordinates
+     * @param stopCoordinates
+     * @param nextWall
+     * @param symbol
+     */
+    fun DoorInfo(
+        type: String?,
+        startCoordinates: String?,
+        stopCoordinates: String?,
+        nextWall: String?,
+        symbol: Symbol?
+    )
 
+    fun getType()
 
+    /**
+     *
+     * @param Type
+     */
+    fun setType(Type: DType?)
+    fun getStartCoordinates()
 
-public interface IDoorInfo {
+    /**
+     *
+     * @param startCoordinates
+     */
+    fun setStartCoordinates(startCoordinates: String?)
+    fun getStopCoordniates()
 
-	/**
-	 * 
-	 * @param type
-	 * @param startCoordinates
-	 * @param stopCoordinates
-	 * @param nextWall
-	 * @param symbol
-	 */
-	public void DoorInfo(String type, String startCoordinates, String stopCoordinates, String nextWall, Symbol symbol);
+    /**
+     *
+     * @param stopCoordniates
+     */
+    fun setStopCoordniates(stopCoordniates: String?)
+    fun getNextWall()
 
-	public void getType();
+    /**
+     *
+     * @param nextWall
+     */
+    fun setNextWall(nextWall: String?)
 
-	/**
-	 * 
-	 * @param Type
-	 */
-	public void setType(DType Type);
-
-	public void getStartCoordinates();
-
-	/**
-	 * 
-	 * @param startCoordinates
-	 */
-	public void setStartCoordinates(String startCoordinates);
-
-	public void getStopCoordniates();
-
-	/**
-	 * 
-	 * @param stopCoordniates
-	 */
-	public void setStopCoordniates(String stopCoordniates);
-
-	public void getNextWall();
-
-	/**
-	 * 
-	 * @param nextWall
-	 */
-	public void setNextWall(String nextWall);
-
-	public Symbol getSymbol();
-
-	/**
-	 * 
-	 * @param symbol
-	 */
-	public void setSymbol(Symbol symbol);
-
+    /**
+     *
+     * @param symbol
+     */
+    var symbol: Symbol?
 }

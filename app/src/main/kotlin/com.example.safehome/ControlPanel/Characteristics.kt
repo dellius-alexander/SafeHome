@@ -1,10 +1,8 @@
-package com.example.safehome.ControlPanel;
+package com.example.safehome.ControlPanel
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.LoggerFactory
 
-
-public class Characteristics {
-    private static final Logger log = LoggerFactory.getLogger(Characteristics.class);
-    // TODO: this class needs implementation created to define key strokes
+object Characteristics {
+    private val log =
+        LoggerFactory.getLogger(Characteristics::class.java) // TODO: this class needs implementation created to define key strokes
 }

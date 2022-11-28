@@ -1,27 +1,27 @@
-package com.example.safehome.ControlPanel;
+package com.example.safehome.ControlPanel
 
 /**
- * Abstract Panel for the {@linkplain ControlPanel} class.
+ * Abstract Panel for the [ControlPanel] class.
  */
-public interface Panel extends KeyPad {
-	/**
-	 * Defines the display status. True if display is available,
-	 * false otherwise.
-	 * @return {@literal boolean}
-	 */
-	boolean displayStatus();
-	/**
-	 * Defines the screen mode to dark mode.
-	 * @param mode the mode definition string to define the mode.
-	 * @return {@literal boolean}
-	 */
-	boolean darkMode(String mode);
+interface Panel : KeyPad {
+    /**
+     * Defines the display status. True if display is available,
+     * false otherwise.
+     * @return boolean
+     */
+    fun displayStatus(): Boolean
 
-	/**
-	 * Sends a control message to initiate a task.
-	 * @param msg the message string
-	 * @return {@literal boolean}
-	 */
-	boolean sendControlMsg(String msg);
+    /**
+     * Defines the screen mode to dark mode.
+     * @param mode the mode definition string to define the mode.
+     * @return boolean
+     */
+    fun darkMode(mode: String?): Boolean
 
+    /**
+     * Sends a control message to initiate a task.
+     * @param msg the message string
+     * @return boolean
+     */
+    fun sendControlMsg(msg: String?): Boolean
 }

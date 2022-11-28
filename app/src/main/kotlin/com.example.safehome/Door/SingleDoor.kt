@@ -1,75 +1,58 @@
-package com.example.safehome.Door;
+package com.example.safehome.Door
 
+import org.slf4j.LoggerFactory
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+class SingleDoor(doorInfo: DoorInfo?) : Door<Any?> {
+    private val doorInfo: DoorInfo? = null
 
-public class SingleDoor implements Door {
-	private static final Logger log = LoggerFactory.getLogger(SingleDoor.class);
-	private DoorInfo doorInfo;
+    /**
+     *
+     * @param doorInfo
+     */
+    init {
+        // TODO - implement SingleDoor.SingleDoor
+        throw UnsupportedOperationException()
+    }
 
-	/**
-	 * 
-	 * @param doorInfo
-	 */
-	public SingleDoor(DoorInfo doorInfo) {
-		// TODO - implement SingleDoor.SingleDoor
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * detects whether an event has occurred
+     */
+    override fun determineType(): DType? {
+        return null
+    }
 
-	/**
-	 * detects whether an event has occurred
-	 */
-	@Override
-	public DType determineType() {
-		return null;
-	}
+    /**
+     * identifies the type of door
+     */
+    override fun identify() {}
 
-	/**
-	 * identifies the type of door
-	 */
-	@Override
-	public void identify() {
+    /**
+     * enables notifications
+     */
+    override fun enableNotification() {}
 
-	}
+    /**
+     * disables notifications
+     */
+    override fun disableNotification() {}
 
-	/**
-	 * enables notifications
-	 */
-	@Override
-	public void enableNotification() {
+    /**
+     * reconfigures door
+     */
+    override fun reconfigure() {}
 
-	}
+    /**
+     * adds door to system
+     */
+    override fun addSensorMomento() {}
 
-	/**
-	 * disables notifications
-	 */
-	@Override
-	public void disableNotification() {
+    /**
+     * gets existing door from system
+     */
+    override val sensorMomento: Unit
+        get() {}
 
-	}
-
-	/**
-	 * reconfigures door
-	 */
-	@Override
-	public void reconfigure() {
-
-	}
-
-	/**
-	 * adds door to system
-	 */
-	@Override
-	public void addSensorMomento() {
-
-	}
-
-	/**
-	 * gets existing door from system
-	 */
-	@Override
-	public void getSensorMomento() {
-
-	}
+    companion object {
+        private val log = LoggerFactory.getLogger(SingleDoor::class.java)
+    }
 }

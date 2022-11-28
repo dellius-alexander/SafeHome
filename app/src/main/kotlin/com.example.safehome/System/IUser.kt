@@ -1,86 +1,72 @@
-package com.example.safehome.System;
+package com.example.safehome.System
 
-import android.location.Address;
-import android.provider.ContactsContract;
+import android.location.Address
+import android.provider.ContactsContract.CommonDataKinds.Phone
 
-import java.util.List;
+interface IUser {
+    /**
+     *
+     * @param name
+     */
+    var name: String?
 
-public interface IUser {
+    /**
+     *
+     * @param email
+     */
+    var email: String?
 
-	String getName();
+    /**
+     *
+     * @param addresses
+     */
+    var addresses: List<Address?>?
 
-	/**
-	 * 
-	 * @param name
-	 */
-	void setName(String name);
+    /**
+     *
+     * @param systemIDs
+     */
+    var systemIDs: List<String?>?
 
-	String getEmail();
+    /**
+     *
+     * @param phones
+     */
+    var phones: List<Phone?>?
 
-	/**
-	 * 
-	 * @param email
-	 */
-	void setEmail(String email);
+    /**
+     *
+     * @param addresses
+     */
+    fun setAddresses1(addresses: List<Address?>?)
 
-	List<Address> getAddresses();
+    /**
+     *
+     * @param phones
+     */
+    fun setPhones1(phones: List<Phone?>?)
 
-	/**
-	 * 
-	 * @param addresses
-	 */
-	void setAddresses(List<Address> addresses);
+    /**
+     *
+     * @param addresses
+     */
+    fun setAddresses2(addresses: List<Address?>?)
 
-	List<String> getSystemIDs();
+    /**
+     *
+     * @param phones
+     */
+    fun setPhones2(phones: List<Phone?>?)
 
-	/**
-	 * 
-	 * @param systemIDs
-	 */
-	void setSystemIDs(List<String> systemIDs);
+    /**
+     *
+     * @param addresses
+     */
+    fun setAddresses3(addresses: List<Address?>?)
 
-	List<ContactsContract.CommonDataKinds.Phone> getPhones();
-
-	/**
-	 * 
-	 * @param phones
-	 */
-	void setPhones(List<ContactsContract.CommonDataKinds.Phone> phones);
-
-	/**
-	 * 
-	 * @param addresses
-	 */
-	void setAddresses1(List<Address> addresses);
-
-	/**
-	 * 
-	 * @param phones
-	 */
-	void setPhones1(List<ContactsContract.CommonDataKinds.Phone> phones);
-
-	/**
-	 * 
-	 * @param addresses
-	 */
-	void setAddresses2(List<Address> addresses);
-
-	/**
-	 * 
-	 * @param phones
-	 */
-	void setPhones2(List<ContactsContract.CommonDataKinds.Phone> phones);
-
-	/**
-	 * 
-	 * @param addresses
-	 */
-	void setAddresses3(List<Address> addresses);
-
-	/**
-	 * 
-	 * @param phones
-	 */
-	void setPhones4(List<ContactsContract.CommonDataKinds.Phone> phones);
-
+    /**
+     *
+     * @param phones
+     */
+    fun setPhones4(phones: List<Phone?>?)
 }

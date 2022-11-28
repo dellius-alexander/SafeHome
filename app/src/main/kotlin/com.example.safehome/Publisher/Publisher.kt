@@ -1,33 +1,71 @@
-package com.example.safehome.Publisher;
+package com.example.safehome.Publisher
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.example.safehome.Door.DType
+import com.example.safehome.Door.Door
+import com.example.safehome.Door.OpenDoor
+import com.example.safehome.Door.BiFoldDoor
+import com.example.safehome.Door.DoubleDoor
+import com.example.safehome.Door.PocketDoor
+import com.example.safehome.Door.SingleDoor
+import com.example.safehome.AbstractFactory
+import com.example.safehome.Door.SlidingDoor
+import com.example.safehome.Door.DoorFactory
+import com.example.safehome.Door.OpenDoorFactory
+import com.example.safehome.Door.BiFoldDoorFactory
+import com.example.safehome.Door.DoubleDoorFactory
+import com.example.safehome.Door.PocketDoorFactory
+import com.example.safehome.Door.SingleDoorFactory
+import com.example.safehome.Door.SlidingDoorFactory
+import com.example.safehome.Wall.Coordinates
+import com.example.safehome.Wall.WallSegment
+import com.example.safehome.Wall.Wall
+import com.example.safehome.Camera.CameraMomento
+import com.example.safehome.Momento
+import com.example.safehome.Camera.SingletonCamera
+import com.example.safehome.Camera.AbstractCamera
+import android.provider.ContactsContract.CommonDataKinds.Phone
+import com.example.safehome.System.SingletonSystem
+import com.example.safehome.Sensors.SType
+import com.example.safehome.Sensors.DoorSensor
+import com.example.safehome.Sensors.MotionSensor
+import com.example.safehome.Sensors.WindowSensor
+import com.example.safehome.Sensors.SensorFactory
+import com.example.safehome.Sensors.DoorSensorFactory
+import com.example.safehome.Sensors.MotionSensorFactory
+import com.example.safehome.Sensors.WindowSensorFactory
+import com.example.safehome.FloorPlan.FType
+import com.example.safehome.FloorPlan.FPlan
+import com.example.safehome.FloorPlan.FloorPlan
+import com.example.safehome.Publisher.CameraNotification
+import com.example.safehome.Publisher.NotificationClient
+import com.example.safehome.Publisher.SensorNotification
+import com.example.safehome.ControlPanel.KeyPad
+import com.example.safehome.ControlPanel.ControlPanel
+import com.example.safehome.ControlPanel.ControlPanelMomento
+import org.slf4j.LoggerFactory
+import java.lang.Exception
+import java.util.HashMap
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class Publisher {
-
-    private static final Logger log = LoggerFactory.getLogger(Publisher.class);
-    private Map<EventType, Notification> notificationSubscribers = new HashMap<>();
-    private Publisher state;
+class Publisher {
+    private val notificationSubscribers: MutableMap<EventType, Notification<*>> = HashMap()
+    private var state: Publisher? = null
 
     /**
      * sets notifications
      * @param notification
      * @param eventType
-     * @return {@linkplain Boolean}
+     * @return [Boolean]
      */
-    public boolean addSubscriber(EventType eventType, Notification notification) {
-        try {
-            this.notificationSubscribers.put(eventType, notification);
+    fun addSubscriber(eventType: EventType, notification: Notification<*>): Boolean {
+        return try {
+            notificationSubscribers[eventType] = notification
             // their may be different notification types, we used "open" as this type;
             // more can be added for each type of notification
-            this.state.notify(notification.getType(), notification.getData().toString());
-            return true;
-        } catch (Exception e){
-            log.error("{}",e);
-            return false;
+            state!!.notify(notification.type, notification.data.toString())
+            true
+        } catch (e: Exception) {
+            log.error("{}", e)
+            false
         }
     }
 
@@ -35,63 +73,62 @@ public class Publisher {
      * delete notifications
      * @param notification
      * @param eventType
-     * @return {@linkplain Boolean}
+     * @return [Boolean]
      */
-    public boolean removeSubscriber(EventType eventType, Notification notification) {
-        try {
-            this.notificationSubscribers.remove(eventType, notification);
+    fun removeSubscriber(eventType: EventType, notification: Notification<*>): Boolean {
+        return try {
+            notificationSubscribers.remove(eventType, notification)
             // their may be different notification types, we used "open" as this type;
             // more can be added for each type of notification
-            return true;
-        } catch (Exception e){
-            log.error("{}",e);
-            return false;
+            true
+        } catch (e: Exception) {
+            log.error("{}", e)
+            false
         }
     }
-
 
     /**
      * enable notifications
      * @param eventType
      * @param data
-     * @return {@linkplain Boolean}
+     * @return [Boolean]
      */
-    public boolean notify(EventType eventType, String data) {
-        for (Map.Entry<EventType, Notification> entry : this.notificationSubscribers.entrySet())
-        {
-            if (entry.getValue().getType() == eventType)
-            {
-                entry.getValue().update(data);
-                return true;
+    fun notify(eventType: EventType?, data: String?): Boolean {
+        for ((_, value) in notificationSubscribers) {
+            if (value.type == eventType) {
+                value.update(data)
+                return true
             }
         }
-        return false;
+        return false
     }
 
     /**
      * disable notifications
      * @param notification
      */
-    public void updateState(Notification notification) {
-        this.state = this;
+    fun updateState(notification: Notification<*>?) {
+        state = this
     }
-
 
     /**
      * save notifications
      * @param notification
-     * @return {@linkplain Boolean}
+     * @return [Boolean]
      */
-    public Publisher getState(Notification notification) {
-        return this.state;
+    fun getState(notification: Notification<*>?): Publisher? {
+        return state
     }
 
     /**
      * retrieves Notification Subscriber object
-     * @return {@linkplain Map<EventType, Notification>}
+     * @return [,][<]
      */
-    public Map<EventType, Notification> getNotificationSubscribers() {
-        return notificationSubscribers;
+    fun getNotificationSubscribers(): Map<EventType, Notification<*>> {
+        return notificationSubscribers
     }
 
+    companion object {
+        private val log = LoggerFactory.getLogger(Publisher::class.java)
+    }
 }

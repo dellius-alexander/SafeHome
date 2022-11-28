@@ -1,19 +1,19 @@
-package com.example.safehome.Sensors;
+package com.example.safehome.Sensors
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.LoggerFactory
 
-
-public class DoorSensorFactory implements SensorFactory<Sensor> {
-    private static final Logger log = LoggerFactory.getLogger(DoorSensorFactory.class);
+class DoorSensorFactory : SensorFactory<Sensor<*>?> {
     /**
      * FactoryMethod returns class of type Sensor.
      *
      * @param request
      * @return FactoryMethod returns class of type Sensor.
      */
-    @Override
-    public Sensor factoryMethod(Sensor request) {
-        return null;
+    override fun factoryMethod(request: Sensor<*>): Sensor<*>? {
+        return null
+    }
+
+    companion object {
+        private val log = LoggerFactory.getLogger(DoorSensorFactory::class.java)
     }
 }

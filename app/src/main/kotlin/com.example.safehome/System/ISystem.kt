@@ -1,45 +1,43 @@
-package com.example.safehome.System;
+package com.example.safehome.System
 
 /**
  * Represents the Security system
  */
-public interface ISystem {
+interface ISystem {
+    /**
+     * initializes some screen or object to enable you to program the system. This could be an admin function.
+     */
+    fun program()
 
-	/**
-	 * initializes some screen or object to enable you to program the system. This could be an admin function.
-	 */
-	void program();
+    /**
+     * displays the system information
+     */
+    fun display()
 
-	/**
-	 * displays the system information
-	 */
-	void display();
+    /**
+     * resets the system and returns true upon completion.
+     */
+    fun reset(): Boolean
 
-	/**
-	 * resets the system and returns true upon completion.
-	 */
-	boolean reset();
+    /**
+     *
+     * @param queryString
+     */
+    fun query(queryString: String?): String?
 
-	/**
-	 * 
-	 * @param queryString
-	 */
-	String query(String queryString);
+    /**
+     * arm the system
+     */
+    fun arm(): Boolean
 
-	/**
-	 * arm the system
-	 */
-	boolean arm();
+    /**
+     * disarm the system
+     */
+    fun disarm(): Boolean
 
-	/**
-	 * disarm the system
-	 */
-	boolean disarm();
-
-	/**
-	 * Arm the system
-	 * @return
-	 */
-	boolean isArmed();
-
+    /**
+     * Arm the system
+     * @return
+     */
+    val isArmed: Boolean
 }

@@ -1,74 +1,58 @@
-package com.example.safehome.Door;
+package com.example.safehome.Door
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.LoggerFactory
 
-public class OpenDoor implements Door {
-	private static final Logger log = LoggerFactory.getLogger(OpenDoor.class);
-	private DoorInfo doorInfo;
+class OpenDoor(doorInfo: DoorInfo?) : Door<Any?> {
+    private val doorInfo: DoorInfo? = null
 
-	/**
-	 * 
-	 * @param doorInfo
-	 */
-	public OpenDoor(DoorInfo doorInfo) {
-		// TODO - implement OpenDoor.OpenDoor
-		throw new UnsupportedOperationException();
-	}
+    /**
+     *
+     * @param doorInfo
+     */
+    init {
+        // TODO - implement OpenDoor.OpenDoor
+        throw UnsupportedOperationException()
+    }
 
-	/**
-	 * detects whether an event has occurred
-	 */
-	@Override
-	public DType determineType() {
-		return null;
-	}
+    /**
+     * detects whether an event has occurred
+     */
+    override fun determineType(): DType? {
+        return null
+    }
 
-	/**
-	 * identifies the type of door
-	 */
-	@Override
-	public void identify() {
+    /**
+     * identifies the type of door
+     */
+    override fun identify() {}
 
-	}
+    /**
+     * enables notifications
+     */
+    override fun enableNotification() {}
 
-	/**
-	 * enables notifications
-	 */
-	@Override
-	public void enableNotification() {
+    /**
+     * disables notifications
+     */
+    override fun disableNotification() {}
 
-	}
+    /**
+     * reconfigures door
+     */
+    override fun reconfigure() {}
 
-	/**
-	 * disables notifications
-	 */
-	@Override
-	public void disableNotification() {
+    /**
+     * adds door to system
+     */
+    override fun addSensorMomento() {}
 
-	}
+    /**
+     * gets existing doorr from system
+     */
+    override val sensorMomento: Unit
+        get() {}
 
-	/**
-	 * reconfigures door
-	 */
-	@Override
-	public void reconfigure() {
-
-	}
-
-	/**
-	 * adds door to system
-	 */
-	@Override
-	public void addSensorMomento() {
-
-	}
-
-	/**
-	 * gets existing doorr from system
-	 */
-	@Override
-	public void getSensorMomento() {
-
-	}
+    companion object {
+        private val log = LoggerFactory.getLogger(OpenDoor::class.java)
+    }
 }

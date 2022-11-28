@@ -1,40 +1,31 @@
-package com.example.safehome.Camera;
+package com.example.safehome.Camera
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import com.example.safehome.Momento;
+import com.example.safehome.Momento
+import org.slf4j.LoggerFactory
 
-public class CameraMomento implements Momento<Camera> {
-    private static final Logger log = LoggerFactory.getLogger(CameraMomento.class);
-    private Camera state;
-
-    /**
-     * Create a momento of the state of on object, save it for
-     * later use to restore the state of the object.
-     * @param state the state the object
-     */
-    public CameraMomento(Camera state){
-        this.state = state;
-    }
-
+class CameraMomento
+/**
+ * Create a momento of the state of on object, save it for
+ * later use to restore the state of the object.
+ * @param state the state the object
+ */(private var state: Camera) : Momento<Camera> {
     /**
      * Retrieves the state of the saved state of the Camera state.
      * @return the saved Object state
      */
-    @Override
-    public Camera getState()
-    {
-        return this.state;
+    override fun getState(): Camera {
+        return state
     }
 
     /**
      * Saves the state of the Camera object.
      * @param state the state the object
      */
-    @Override
-    public void setState(Camera state)
-    {
-        this.state = state;
+    override fun setState(state: Camera) {
+        this.state = state
     }
 
+    companion object {
+        private val log = LoggerFactory.getLogger(CameraMomento::class.java)
+    }
 }

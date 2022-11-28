@@ -1,7 +1,5 @@
-package com.example.safehome.Sensors;
-import com.example.safehome.AbstractFactory;
+package com.example.safehome.Sensors
 
-public interface SensorFactory<Object> extends AbstractFactory<Object> {
+import com.example.safehome.AbstractFactory
 
-
-}
+interface SensorFactory<Object> : AbstractFactory<Object>

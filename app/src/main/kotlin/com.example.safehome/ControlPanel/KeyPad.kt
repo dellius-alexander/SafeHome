@@ -1,18 +1,18 @@
-package com.example.safehome.ControlPanel;
+package com.example.safehome.ControlPanel
 
 /**
  * Represents user input
  */
-public interface KeyPad {
+interface KeyPad {
+    /**
+     * Defines the input from terminal, screen or key pad
+     * @param keyStrokes the String keyStroke input.
+     */
+    fun readKeyStrokes(keyStrokes: String?)
 
-	/**
-	 * Defines the input from terminal, screen or key pad
-	 * @param keyStrokes the {@literal String} keyStroke input.
-	 */
-	void readKeyStrokes(String keyStrokes);
-	/**
-	 * Decodes keystroke to to utf-8 encoding
-	 * @return the decoded key {@literal String} value
-	 */
-	String decodeKey();
+    /**
+     * Decodes keystroke to to utf-8 encoding
+     * @return the decoded key String value
+     */
+    fun decodeKey(): String?
 }

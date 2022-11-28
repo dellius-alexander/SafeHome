@@ -1,20 +1,17 @@
-package com.example.safehome.System;
+package com.example.safehome.System
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.LoggerFactory
 
+class SingletonSystem private constructor() {
+    val instance: System
 
-public class SingletonSystem {
-	private static final Logger log = LoggerFactory.getLogger(SingletonSystem.class);
-	private static System instance = null;
+    init {
+        // TODO - implement SingletonSystem.SingletonSystem
+        throw UnsupportedOperationException()
+    }
 
-	public System getInstance() {
-		return this.instance;
-	}
-
-	private SingletonSystem() {
-		// TODO - implement SingletonSystem.SingletonSystem
-		throw new UnsupportedOperationException();
-	}
-
+    companion object {
+        private val log = LoggerFactory.getLogger(SingletonSystem::class.java)
+        private val instance: System? = null
+    }
 }

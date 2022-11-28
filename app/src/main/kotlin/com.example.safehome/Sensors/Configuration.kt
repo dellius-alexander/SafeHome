@@ -1,9 +1,7 @@
-package com.example.safehome.Sensors;
+package com.example.safehome.Sensors
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.LoggerFactory
 
-
-public class Configuration {
-    private static final Logger log = LoggerFactory.getLogger(Configuration.class);
+object Configuration {
+    private val log = LoggerFactory.getLogger(Configuration::class.java)
 }
