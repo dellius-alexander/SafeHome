@@ -1,5 +1,8 @@
 package com.example.safehome.System;
 
+/**
+ * Represents the Security system
+ */
 public interface ISystem {
 
 	/**
@@ -33,6 +36,10 @@ public interface ISystem {
 	 */
 	boolean disarm();
 
+	/**
+	 * Arm the system
+	 * @return
+	 */
 	boolean isArmed();
 
 }

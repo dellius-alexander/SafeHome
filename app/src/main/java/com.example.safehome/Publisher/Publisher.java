@@ -3,12 +3,13 @@ package com.example.safehome.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Publisher {
 
     private static final Logger log = LoggerFactory.getLogger(Publisher.class);
-    private Map<EventType, Notification> notificationSubscribers;
+    private Map<EventType, Notification> notificationSubscribers = new HashMap<>();
     private Publisher state;
 
     /**
