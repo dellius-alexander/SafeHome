@@ -49,7 +49,7 @@ class FloorPlan : FPlan {
     private val name: String? = null
     private val dimensions: String? = null
     private val walls: Map<Coordinates, Wall>? = null
-    override fun type(): FType? {
+    fun type(): FType? {
         return type
     }
 
