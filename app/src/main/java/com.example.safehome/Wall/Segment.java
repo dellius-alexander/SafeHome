@@ -7,9 +7,9 @@ import java.util.List;
  * coordinate and ending coordinates of the segment. A segment can contain a wall
  * segment, a window, door or any object that is part of a wall in the 2D coordinate
  * system.
- * @param <Object> represent type of segment implemented by this class.
+ * @param <Coordinates> represent coordinates system for the segment.
  */
-public interface Segment<Object> {
+public interface Segment<Coordinates> {
     /**
      * The type of segment this segment represents.
      * @return the segment type
@@ -51,6 +51,5 @@ public interface Segment<Object> {
      * @param stopCoordinates the stop coordinates
      */
     void setStopCoordinates(Coordinates stopCoordinates);
-
 
 }

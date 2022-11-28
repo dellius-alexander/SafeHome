@@ -28,6 +28,7 @@ public class Publisher {
             log.error("{}",e);
             return false;
         }
+
     }
 
     /**
