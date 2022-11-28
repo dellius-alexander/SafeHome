@@ -1,49 +1,9 @@
 package com.example.safehome.Wall
 
-import com.example.safehome.Door.DType
-import com.example.safehome.Door.Door
-import com.example.safehome.Door.OpenDoor
-import com.example.safehome.Door.BiFoldDoor
-import com.example.safehome.Door.DoubleDoor
-import com.example.safehome.Door.PocketDoor
-import com.example.safehome.Door.SingleDoor
-import com.example.safehome.AbstractFactory
-import com.example.safehome.Door.SlidingDoor
-import com.example.safehome.Door.DoorFactory
-import com.example.safehome.Door.OpenDoorFactory
-import com.example.safehome.Door.BiFoldDoorFactory
-import com.example.safehome.Door.DoubleDoorFactory
-import com.example.safehome.Door.PocketDoorFactory
-import com.example.safehome.Door.SingleDoorFactory
-import com.example.safehome.Door.SlidingDoorFactory
-import com.example.safehome.Wall.Coordinates
-import com.example.safehome.Wall.WallSegment
-import com.example.safehome.Wall.Wall
-import com.example.safehome.Camera.CameraMomento
-import com.example.safehome.Momento
-import com.example.safehome.Camera.SingletonCamera
-import com.example.safehome.Camera.AbstractCamera
-import android.provider.ContactsContract.CommonDataKinds.Phone
-import com.example.safehome.System.SingletonSystem
-import com.example.safehome.Sensors.SType
-import com.example.safehome.Sensors.DoorSensor
-import com.example.safehome.Sensors.MotionSensor
-import com.example.safehome.Sensors.WindowSensor
-import com.example.safehome.Sensors.SensorFactory
-import com.example.safehome.Sensors.DoorSensorFactory
-import com.example.safehome.Sensors.MotionSensorFactory
-import com.example.safehome.Sensors.WindowSensorFactory
-import com.example.safehome.FloorPlan.FType
-import com.example.safehome.FloorPlan.FPlan
-import com.example.safehome.FloorPlan.FloorPlan
-import com.example.safehome.Publisher.CameraNotification
-import com.example.safehome.Publisher.NotificationClient
-import com.example.safehome.Publisher.SensorNotification
-import com.example.safehome.ControlPanel.KeyPad
-import com.example.safehome.ControlPanel.ControlPanel
-import com.example.safehome.ControlPanel.ControlPanelMomento
+
 import org.slf4j.LoggerFactory
 import java.util.ArrayList
+import java.util.List
 
 /**
  * Creates a wall segment using the coordinates to place the segment on the canvas.
@@ -63,7 +23,7 @@ class WallSegment(
      * @param color the color of the wall segment
      */
     var color: String
-    private var dimensions: MutableList<Coordinates>
+    private var dimensions: MutableList<Coordinates>?
     private val type: String
 
     /**
@@ -74,9 +34,9 @@ class WallSegment(
      * @param stopCoordinate the stop coordinate
      */
     init {
-        dimensions = ArrayList()
-        dimensions.add(startCoordinate)
-        dimensions.add(stopCoordinate)
+        dimensions = ArrayList<Coordinates>()
+        (dimensions as ArrayList<Coordinates>).add(startCoordinate)
+        (dimensions as ArrayList<Coordinates>).add(stopCoordinate)
         this.color = color
         this.type = type
         log.info(this.toString())
@@ -105,7 +65,7 @@ class WallSegment(
      *
      * @param dimensions the dimensions of the segment.
      */
-    override fun setDimensions(dimensions: MutableList<Coordinates>) {
+    override fun setDimensions(dimensions: MutableList<Coordinates>?) {
         this.dimensions = dimensions
     }
     /**
@@ -113,33 +73,44 @@ class WallSegment(
      *
      * @return the start coordinates of the segment
      */
+
+
+
+
+    /**
+     * The start coordinates of the segment.
+     * @return the start coordinates of the segment
+     */
+    override fun getStartCoordinates():Coordinates? {return this.dimensions?.get(0)
+    }
+
     /**
      * Set the start coordinates for the segment.
-     *
      * @param startCoordinates the start coordinates
      */
-    override var startCoordinates: Coordinates
-        get() = dimensions[0]
-        set(startCoordinates) {
-            dimensions[0] = startCoordinates
-        }
+    override fun setStartCoordinates(startCoordinates:Coordinates?) {this.dimensions?.add(0, startCoordinates!!)
+    }
+
+
+
     /**
-     * The stop coordinates of the segment.
-     *
-     * @return the stop coordinates of the segment
+     * The start coordinates of the segment.
+     * @return the start coordinates of the segment
      */
+    override fun getStopCoordinates():Coordinates? {return this.dimensions?.get(1)
+    }
+
     /**
-     * Set the stop coordinates for the segment.
-     *
-     * @param stopCoordinates the stop coordinates
+     * Set the start coordinates for the segment.
+     * @param startCoordinates the start coordinates
      */
-    override var stopCoordinates: Coordinates
-        get() = dimensions[1]
-        set(stopCoordinates) {
-            dimensions[1] = stopCoordinates
-        }
+    override fun setStopCoordinates(stopCoordinates:Coordinates?) {this.dimensions?.add(1, stopCoordinates!!)
+    }
 
     companion object {
         private val log = LoggerFactory.getLogger(WallSegment::class.java)
     }
+
+
+
 }

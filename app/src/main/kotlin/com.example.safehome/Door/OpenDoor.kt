@@ -2,7 +2,7 @@ package com.example.safehome.Door
 
 import org.slf4j.LoggerFactory
 
-class OpenDoor(doorInfo: DoorInfo?) : Door<Any?> {
+class OpenDoor(doorInfo: DoorInfo?) : Door {
     private val doorInfo: DoorInfo? = null
 
     /**
@@ -47,9 +47,16 @@ class OpenDoor(doorInfo: DoorInfo?) : Door<Any?> {
     override fun addSensorMomento() {}
 
     /**
+     * gets existing sensor from system
+     */
+    override fun getSensorMomento() {
+        TODO("Not yet implemented")
+    }
+
+    /**
      * gets existing doorr from system
      */
-    override val sensorMomento: Unit
+    val sensorMomento: Unit
         get() {}
 
     companion object {

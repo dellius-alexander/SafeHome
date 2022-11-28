@@ -1,47 +1,6 @@
 package com.example.safehome.Publisher
 
-import com.example.safehome.Door.DType
-import com.example.safehome.Door.Door
-import com.example.safehome.Door.OpenDoor
-import com.example.safehome.Door.BiFoldDoor
-import com.example.safehome.Door.DoubleDoor
-import com.example.safehome.Door.PocketDoor
-import com.example.safehome.Door.SingleDoor
-import com.example.safehome.AbstractFactory
-import com.example.safehome.Door.SlidingDoor
-import com.example.safehome.Door.DoorFactory
-import com.example.safehome.Door.OpenDoorFactory
-import com.example.safehome.Door.BiFoldDoorFactory
-import com.example.safehome.Door.DoubleDoorFactory
-import com.example.safehome.Door.PocketDoorFactory
-import com.example.safehome.Door.SingleDoorFactory
-import com.example.safehome.Door.SlidingDoorFactory
-import com.example.safehome.Wall.Coordinates
-import com.example.safehome.Wall.WallSegment
-import com.example.safehome.Wall.Wall
-import com.example.safehome.Camera.CameraMomento
-import com.example.safehome.Momento
-import com.example.safehome.Camera.SingletonCamera
-import com.example.safehome.Camera.AbstractCamera
-import android.provider.ContactsContract.CommonDataKinds.Phone
-import com.example.safehome.System.SingletonSystem
-import com.example.safehome.Sensors.SType
-import com.example.safehome.Sensors.DoorSensor
-import com.example.safehome.Sensors.MotionSensor
-import com.example.safehome.Sensors.WindowSensor
-import com.example.safehome.Sensors.SensorFactory
-import com.example.safehome.Sensors.DoorSensorFactory
-import com.example.safehome.Sensors.MotionSensorFactory
-import com.example.safehome.Sensors.WindowSensorFactory
-import com.example.safehome.FloorPlan.FType
-import com.example.safehome.FloorPlan.FPlan
-import com.example.safehome.FloorPlan.FloorPlan
-import com.example.safehome.Publisher.CameraNotification
-import com.example.safehome.Publisher.NotificationClient
-import com.example.safehome.Publisher.SensorNotification
-import com.example.safehome.ControlPanel.KeyPad
-import com.example.safehome.ControlPanel.ControlPanel
-import com.example.safehome.ControlPanel.ControlPanelMomento
+
 import org.slf4j.LoggerFactory
 import java.lang.Exception
 import java.util.ArrayList
@@ -50,11 +9,11 @@ import java.util.ArrayList
  * Concrete implementation of CameraNotification
  * @param <Data>
 </Data> */
-class CameraNotification<Data>(
-    private val eventType: EventType,
-    private override val state: Boolean,
+class CameraNotification(
+    private var event: EventType,
+    private var state: Boolean,
     data: Data
-) : Notification<Data?> {
+) : Notification {
     private val listOfData: MutableList<Data>
 
     init {
@@ -97,35 +56,45 @@ class CameraNotification<Data>(
      *
      * @param state
      */
-    override fun setState(state: Boolean) {}
+    override fun setState(state: Boolean) {this.state = state}
     /**
      * gets type from system
      *
      * @return [EventType]
      */
     /**
-     * sets type in system
-     *
-     * @param type
+     * sets type of event
      */
-    override var type: EventType?
-        get() = null
-        set(type) {}
+    override fun setType(type: EventType?) {
+        if (type != null) {
+            this.event = type
+        }
+    }
+
+    /**
+     * gets type of event
+     * @return EventType
+     */
+    override fun getType(): EventType? {
+        if (event != null) {
+            return this.event
+        }
+        return null
+    }
+
 
     /**
      * gets data message received from an event
-     *
      * @return Data received from an event
      */
-    override val data: Data
-        get() {
-            try {
-                return listOfData[listOfData.size - 1]
-            } catch (e: Exception) {
-                log.error("{}", e)
-            }
-            return null
+    override fun getData(): Data?{
+        try {
+            return listOfData[listOfData.size - 1]
+        } catch (e: Exception) {
+            log.error("{}", e)
         }
+        return null
+    }
 
     companion object {
         private val log = LoggerFactory.getLogger(CameraNotification::class.java)
