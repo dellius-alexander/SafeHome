@@ -1,7 +1,11 @@
 package com.example.safehome.Door
 
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-object Symbol {
-    private val log = LoggerFactory.getLogger(Symbol::class.java)
+class Symbol {
+
+    companion object {
+        private val log: Logger = LoggerFactory.getLogger(Symbol::class.java)
+    }
 }

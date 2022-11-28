@@ -2,21 +2,8 @@ package com.example.safehome.Door
 
 interface IDoorInfo {
     /**
-     *
-     * @param type
-     * @param startCoordinates
-     * @param stopCoordinates
-     * @param nextWall
-     * @param symbol
+     * Get the door type
      */
-    fun DoorInfo(
-        type: String?,
-        startCoordinates: String?,
-        stopCoordinates: String?,
-        nextWall: String?,
-        symbol: Symbol?
-    )
-
     fun getType()
 
     /**
@@ -50,5 +37,7 @@ interface IDoorInfo {
      *
      * @param symbol
      */
-    var symbol: Symbol?
+    fun setSymbol(symbol: Symbol?)
+
+    fun getSymbol(): Symbol?
 }

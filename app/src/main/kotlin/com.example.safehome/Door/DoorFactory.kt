@@ -1,5 +1,5 @@
 package com.example.safehome.Door
 
-import com.example.safehome.AbstractFactory
+import com.example.safehome.IAbstractFactory
 
-interface DoorFactory<Object> : AbstractFactory<Object>
+interface DoorFactory<Object> : IAbstractFactory<Object>

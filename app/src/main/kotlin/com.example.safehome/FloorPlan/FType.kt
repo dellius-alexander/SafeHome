@@ -1,6 +1,7 @@
 package com.example.safehome.FloorPlan
 
 
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.HashMap
 import java.util.stream.Collectors
@@ -13,10 +14,13 @@ enum class FType
  * Create new SType with label = label
  * @param label
  */(private val label: String) {
-    DEFAULT("DEFAULT"), _1D("1D"), _2D("2D"), _3D("3D");
+    DEFAULT("DEFAULT"),
+    _1D("1D"),
+    _2D("2D"),
+    _3D("3D");
 
     companion object {
-        private val log = LoggerFactory.getLogger(FType::class.java)
+        private val log: Logger = LoggerFactory.getLogger(FType::class.java)
 
         // static inference
         private val BY_LABEL: MutableMap<String, FType> = HashMap()

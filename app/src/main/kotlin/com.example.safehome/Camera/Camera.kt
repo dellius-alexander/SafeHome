@@ -1,5 +1,6 @@
 package com.example.safehome.Camera
 
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 class Camera : AbstractCamera{
@@ -21,7 +22,7 @@ class Camera : AbstractCamera{
     /**
      * Defaults to false.
      */
-    private var hasPushNotifications = false
+    private var hasPushNotification = false
     private var connectivity: String? = null
     private var state: Camera? = null
 
@@ -30,24 +31,28 @@ class Camera : AbstractCamera{
      */
     private var storage: Storage<*>? = null
 
-    constructor(
-        id: String?,
-        type: String?,
-        location: String?,
-        fieldOfView: String?,
-        twoWayRadio: Boolean?,
-        nightVision: Boolean?,
-        resolution: String?,
-        hasPushNotification: Boolean?,
-        connectivity: String?
-    ){
-        this.id = id
-        this.type = type
-        this.location = location
-        this.fieldOfView = fieldOfView
-        this.
-
-    }
+//    constructor(
+//        id: String?,
+//        type: String?,
+//        location: String?,
+//        fieldOfView: String?,
+//        twoWayAudio: Boolean,
+//        nightVision: Boolean,
+//        resolution: String?,
+//        hasPushNotification: Boolean,
+//        connectivity: String?
+//    ){
+//        this.id = id
+//        this.type = type
+//        this.location = location
+//        this.fieldOfView = fieldOfView
+//        this.twoWayAudio = twoWayAudio
+//        this.nightVision = nightVision
+//        this.resolution = resolution
+//        this.hasPushNotification = hasPushNotification
+//        this.connectivity = connectivity
+//
+//    }
 
     /**
      * Defines the camera type.
@@ -77,31 +82,27 @@ class Camera : AbstractCamera{
      * Create a restore state from the CameraMomento.
      * @param cameraMomemto the saved state of an Object.
      */
-    fun restoreState(cameraMomemto: CameraMomento?) {
-        // TODO - implement Camera.restoreState
-//		throw new UnsupportedOperationException();
+    fun restoreState(cameraMomemto: CameraIMomento?) {
+        this.state = cameraMomemto?.getState()
     }
 
-    companion object {
-        private val log = LoggerFactory.getLogger(Camera::class.java)
-    }
 
     override fun id(): String? {
-        TODO("Not yet implemented")
+        return this.id
     }
 
     /**
      * Defines the type of camera used in the security system.
      */
     override fun type(): String? {
-        TODO("Not yet implemented")
+        return this.type
     }
 
     /**
      * The location of the camera.
      */
     override fun location(): String? {
-        TODO("Not yet implemented")
+        return this.location
     }
 
     /**
@@ -113,21 +114,21 @@ class Camera : AbstractCamera{
      * and so on...
      */
     override fun fieldOfView(): String? {
-        TODO("Not yet implemented")
+        return this.fieldOfView
     }
 
     /**
      * Does the camera have two-way audio functionality.
      */
     override fun twoWayAudio(): Boolean {
-        TODO("Not yet implemented")
+        return this.twoWayAudio
     }
 
     /**
      * Does the camera have night vision capabilities.
      */
     override fun nightVision(): Boolean {
-        TODO("Not yet implemented")
+        return this.nightVision
     }
 
     /**
@@ -138,14 +139,14 @@ class Camera : AbstractCamera{
      * 4K
      */
     override fun resolution(): String? {
-        TODO("Not yet implemented")
+        return this.resolution
     }
 
     /**
      * Does the camera have push notifications functionality.
      */
     override fun hasPushNotifications(): Boolean {
-        TODO("Not yet implemented")
+        return this.hasPushNotification
     }
 
     /**
@@ -157,7 +158,7 @@ class Camera : AbstractCamera{
      * and so on...
      */
     override fun connectivity(): String? {
-        TODO("Not yet implemented")
+        return this.connectivity
     }
 
     /**
@@ -171,6 +172,11 @@ class Camera : AbstractCamera{
      * and so on...
      */
     override fun storage(): Storage<*>? {
-        TODO("Not yet implemented")
+        return this.storage
     }
+
+    companion object {
+        private val log: Logger = LoggerFactory.getLogger(Camera::class.java)
+    }
+
 }

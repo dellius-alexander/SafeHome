@@ -1,14 +1,11 @@
 package com.example.safehome.Door
 
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-class PocketDoor(doorInfo: DoorInfo?) : Door<Any?> {
+class PocketDoor(doorInfo: DoorInfo?) : Door {
     private val doorInfo: DoorInfo? = null
 
-    /**
-     *
-     * @param doorInfo
-     */
     init {
         // TODO - implement PocketDoor.PocketDoor
         throw UnsupportedOperationException()
@@ -47,12 +44,19 @@ class PocketDoor(doorInfo: DoorInfo?) : Door<Any?> {
     override fun addSensorMomento() {}
 
     /**
+     * gets existing sensor from system
+     */
+    override fun getSensorMomento() {
+        TODO("Not yet implemented")
+    }
+
+    /**
      * gets existing door from system
      */
-    override val sensorMomento: Unit
+    val sensorMomento: Unit
         get() {}
 
     companion object {
-        private val log = LoggerFactory.getLogger(PocketDoor::class.java)
+        private val log: Logger = LoggerFactory.getLogger(PocketDoor::class.java)
     }
 }

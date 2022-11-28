@@ -1,5 +1,6 @@
 package com.example.safehome.Wall
 
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.lang.Exception
 
@@ -40,6 +41,6 @@ class Coordinates(x: Int?, y: Int?) {
     }
 
     companion object {
-        private val log = LoggerFactory.getLogger(Coordinates::class.java)
+        private val log: Logger = LoggerFactory.getLogger(Coordinates::class.java)
     }
 }

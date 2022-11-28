@@ -1,16 +1,13 @@
 package com.example.safehome.Sensors
 
+
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-class DoorSensor : Sensor<Any?> {
-    private val sensorMomentoList: Array<List<SensorMomento>>
+class DoorSensor : Sensor {
+    private val sensorMomentoList: Array<List<SensorMomento>> = TODO()
     private val state: SensorInfo? = null
 
-    /**
-     * detects whether an event has occurred
-     */
-    override val isEventDectected: Boolean
-        get() = false
 
     /**
      * identifies the type of sensor
@@ -38,12 +35,20 @@ class DoorSensor : Sensor<Any?> {
     override fun addSensorMomento() {}
 
     /**
+     * detects whether an event has occurred
+     */
+    override fun isEventDetected(): Boolean {
+        return false;
+    }
+
+    /**
      * gets existing sensor from system
      */
-    override val sensorMomento: Unit
-        get() {}
+    override fun getSensorMomento() {
+
+    }
 
     companion object {
-        private val log = LoggerFactory.getLogger(DoorSensor::class.java)
+        private val log: Logger = LoggerFactory.getLogger(DoorSensor::class.java)
     }
 }
