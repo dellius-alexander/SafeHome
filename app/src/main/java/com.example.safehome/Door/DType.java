@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
 /**
  * DType policies defines door types
  */
@@ -18,9 +19,11 @@ public enum DType {
     SLIDING("SLIDING");
 
     private static final Logger log = LoggerFactory.getLogger(DType.class);
-    private final String label;
     // static inference
+    private final String label;
     private static final Map<String, DType> BY_LABEL = new HashMap<>();
+
+
     /**
      * Create new SType with label = label
      * @param label
@@ -40,7 +43,7 @@ public enum DType {
     /**
      * Static inference: Creates a SType Object with label = label.
      * @param label
-     * @return
+     * @return type
      */
     public static DType valueOfLabel(String label) {
         DType t = null;

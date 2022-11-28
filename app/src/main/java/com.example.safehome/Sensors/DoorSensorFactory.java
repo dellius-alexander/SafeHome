@@ -1,6 +1,11 @@
 package com.example.safehome.Sensors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 public class DoorSensorFactory implements SensorFactory<Sensor> {
+    private static final Logger log = LoggerFactory.getLogger(DoorSensorFactory.class);
     /**
      * FactoryMethod returns class of type Sensor.
      *

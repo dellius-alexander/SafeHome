@@ -1,12 +1,13 @@
 package com.example.safehome.Publisher;
 
-import androidx.appcompat.view.menu.MenuBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
      * NotificationClient
      */
     public class NotificationClient {
-
+        private static final Logger log = LoggerFactory.getLogger(NotificationClient.class);
         private Publisher publisher;
         private Notification notification;
 
@@ -25,7 +26,7 @@ import androidx.appcompat.view.menu.MenuBuilder;
             this.notification = notification;
         // their may be different notification types, we used "open" as this type;
         // more can be added for each type of notification
-            this.publisher.notify(notification.getType(), this.notification.data);
+            this.publisher.notify(notification.getType(), this.notification.getData().toString());
             return true;
         }
 
@@ -35,16 +36,24 @@ import androidx.appcompat.view.menu.MenuBuilder;
          * @return {@linkplain Boolean}
          */
         public boolean deleteNotification(Notification notification) {
-
-            for(int i = 0; i < this.publisher.notificationSubscibers.size(); i++)
-            {
-                Notification savedNotification = this.publisher.notificationSubscribers.get(i);
-                if (savedNotification.getType() ==  notification.getType() && savedNotification instanceof Notification)
+            try{
+                for(int i = 0; i < this.publisher.getNotificationSubscribers().size(); i++)
                 {
-                    this.publisher.notificationSubscribers.remove(i);
+                    Notification savedNotification = this.publisher.getNotificationSubscribers().get(i);
+                    if (savedNotification.getType() ==  notification.getType() && savedNotification instanceof Notification)
+                    {
+                        log.info("{}", this.publisher.getNotificationSubscribers());
+                        this.publisher.getNotificationSubscribers().remove(i);
+                        log.info("{}", this.publisher.getNotificationSubscribers());
+                        return true;
+                    }
                 }
+
+            }catch(Exception e) {
+                log.error("{}", e);
+
             }
-            return true;
+            return false;
         }
 
 

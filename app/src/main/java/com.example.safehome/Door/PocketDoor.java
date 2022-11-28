@@ -1,7 +1,10 @@
 package com.example.safehome.Door;
 
-public class PocketDoor implements Door {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+public class PocketDoor implements Door {
+	private static final Logger log = LoggerFactory.getLogger(PocketDoor.class);
 	private DoorInfo doorInfo;
 
 	/**

@@ -1,5 +1,8 @@
 package com.example.safehome.Camera;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Singleton
  * Intent
@@ -106,7 +109,7 @@ package com.example.safehome.Camera;
  * Abstract Factories, Builders and Prototypes can all be implemented as Singletons.
  */
 public class SingletonCamera {
-
+	private static final Logger log = LoggerFactory.getLogger(SingletonCamera.class);
 	/**
 	 * Static instance of camera
 	 */
@@ -119,6 +122,7 @@ public class SingletonCamera {
 		// TODO - implement SingletonCamera.SingletonCamera
 		 throw new UnsupportedOperationException("Cannot implement constructor.");
 	}
+
 	/**
 	 * Gets the instance of the singleton object.
 	 * @return returns the singleton object.

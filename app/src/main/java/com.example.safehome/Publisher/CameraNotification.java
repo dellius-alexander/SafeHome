@@ -1,9 +1,8 @@
 package com.example.safehome.Publisher;
 
-import com.example.safehome.Sensors.Sensor;
-import com.example.safehome.Sensors.SensorInfo;
-import com.example.safehome.Sensors.SensorMomento;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,10 +10,17 @@ import java.util.List;
  * @param <Data>
  */
 public class CameraNotification<Data> implements Notification<Data> {
+    private static final Logger log = LoggerFactory.getLogger(CameraNotification.class);
+    private boolean state;
+    private List<Data> listOfData;
+    private EventType eventType;
 
-    boolean state;
-    Data data;
-    EventType eventType;
+public CameraNotification(EventType eventType, boolean state, Data data) {
+    this.eventType = eventType;
+    this.state = state;
+    this.listOfData = new ArrayList<>();
+    this.listOfData.add(data);
+}
 
     /**
      * enables notifications
@@ -46,7 +52,7 @@ public class CameraNotification<Data> implements Notification<Data> {
      * gets state from system
      */
     @Override
-    public boolean getstate() {
+    public boolean getState() {
         return false;
     }
 
@@ -56,7 +62,7 @@ public class CameraNotification<Data> implements Notification<Data> {
      * @param state
      */
     @Override
-    public void setstate(boolean state) {
+    public void setState(boolean state) {
 
     }
 
@@ -71,10 +77,27 @@ public class CameraNotification<Data> implements Notification<Data> {
     }
 
     /**
-     * gets event from system
+     * gets type from system
+     *
+     * @return {@linkplain EventType}
      */
     @Override
-    public EventType getEvent() {
+    public EventType getType() {
+        return null;
+    }
+
+    /**
+     * gets data message received from an event
+     *
+     * @return Data received from an event
+     */
+    @Override
+    public Data getData() {
+        try{
+            return this.listOfData.get(listOfData.size()-1);
+        }catch (Exception e){
+            log.error("{}", e);
+        }
         return null;
     }
 }

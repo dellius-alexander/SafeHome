@@ -1,8 +1,11 @@
 package com.example.safehome.Camera;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.example.safehome.Momento;
 
 public class CameraMomento implements Momento<Camera> {
+    private static final Logger log = LoggerFactory.getLogger(CameraMomento.class);
     private Camera state;
 
     /**
