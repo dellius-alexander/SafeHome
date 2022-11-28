@@ -1,11 +1,12 @@
 package com.example.safehome.Sensors;
 
-import com.example.safehome.Sensors.SensorMomento;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class WindowSensor implements Sensor {
-
+	private static final Logger log = LoggerFactory.getLogger(WindowSensor.class);
 	private List<SensorMomento>[] sensorMomentoList;
 	private SensorInfo state;
 

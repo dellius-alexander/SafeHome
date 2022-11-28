@@ -1,8 +1,10 @@
 package com.example.safehome.Door;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BiFoldDoor implements Door {
-
+	private static final Logger log = LoggerFactory.getLogger(BiFoldDoor.class);
 	private DoorInfo doorInfo;
 
 	/**
@@ -16,6 +18,7 @@ public class BiFoldDoor implements Door {
 
 	/**
 	 * detects whether an event has occurred
+	 * @return DType
 	 */
 	@Override
 	public DType determineType() {

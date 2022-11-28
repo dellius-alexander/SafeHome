@@ -25,12 +25,12 @@ public interface Notification<Data> {
     /**
      * gets state from system
      */
-    boolean getstate();
+    boolean getState();
 
     /**
      * sets state in system
      */
-    void setstate(boolean state);
+    void setState(boolean state);
 
     /**
      * sets type in system
@@ -44,9 +44,9 @@ public interface Notification<Data> {
     EventType getType();
 
     /**
-     * gets event from system
+     * gets data message received from an event
+     * @return Data received from an event
      */
-    EventType getEvent();
-
+    Data getData();
 }
 

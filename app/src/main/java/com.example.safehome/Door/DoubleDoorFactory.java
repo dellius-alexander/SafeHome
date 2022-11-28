@@ -1,8 +1,11 @@
 package com.example.safehome.Door;
 
-import com.example.safehome.Door.DoorFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class DoubleDoorFactory implements DoorFactory<Door> {
+    private static final Logger log = LoggerFactory.getLogger(DoubleDoorFactory.class);
     /**
      * FactoryMethod returns class of type Door.
      *

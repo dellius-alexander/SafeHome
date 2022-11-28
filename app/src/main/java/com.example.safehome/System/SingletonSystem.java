@@ -1,7 +1,11 @@
 package com.example.safehome.System;
 
-public class SingletonSystem {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+
+public class SingletonSystem {
+	private static final Logger log = LoggerFactory.getLogger(SingletonSystem.class);
 	private static System instance = null;
 
 	public System getInstance() {

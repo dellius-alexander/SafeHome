@@ -1,6 +1,11 @@
 package com.example.safehome.Wall;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 public class Coordinates {
+    private static final Logger log = LoggerFactory.getLogger(Coordinates.class);
     int x;
     int y;
 

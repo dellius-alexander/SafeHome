@@ -14,7 +14,7 @@ public enum EventType {
     MOTIONDETECTED("MOTIONDETECTED"),
     POWER("POWER"),
     CONNECTIVITY("CONNECTIVITY"),
-    TRIGGERED("TRIGGERED"),
+    TRIGGERED("TRIGGERED");
 
     private static final Logger log = LoggerFactory.getLogger(EventType.class);
     private final String label;

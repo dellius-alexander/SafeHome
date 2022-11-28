@@ -1,12 +1,18 @@
 package com.example.safehome.Camera;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 public class Camera {
+	private static final Logger log = LoggerFactory.getLogger(Camera.class);
 
 	/**
 	 * camera id
 	 */
 	private String id = null;
 	private String type = null;
+
 	/**
 	 * camera location
 	 */
@@ -15,12 +21,14 @@ public class Camera {
 	private boolean twoWayAudio;
 	private boolean nightVision;
 	private String resolution = null;
+
 	/**
 	 * Defaults to false.
 	 */
 	private boolean hasPushNotifications = false;
 	private String connectivity = null;
 	private Camera state;
+
 	/**
 	 * Defines the storage object.
 	 */
@@ -33,6 +41,7 @@ public class Camera {
 	public void setType(String type) {
 		this.type = type;
 	}
+
 	/**
 	 * Saves a new state of the Object.
 	 * @param newState the Object state to save
@@ -40,6 +49,7 @@ public class Camera {
 	public void setState(Camera newState) {
 		this.state = newState;
 	}
+
 	/**
 	 * Retrieve the save state of the Object
 	 * @return the saved state of the Object
@@ -47,6 +57,7 @@ public class Camera {
 	public Camera saveState() {
 		return this.state;
 	}
+
 	/**
 	 * Create a restore state from the CameraMomento.
 	 * @param cameraMomemto the saved state of an Object.
@@ -55,5 +66,4 @@ public class Camera {
 		// TODO - implement Camera.restoreState
 //		throw new UnsupportedOperationException();
 	}
-
 }

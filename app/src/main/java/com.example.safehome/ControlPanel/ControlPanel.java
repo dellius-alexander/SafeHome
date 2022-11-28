@@ -1,14 +1,17 @@
 package com.example.safehome.ControlPanel;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.net.NetworkInterface;
 
 public class ControlPanel implements Panel{
+    private static final Logger log = LoggerFactory.getLogger(ControlPanel.class);
     private String mode;
     private Characteristics keyPadCharacteristics;
     private Speaker speaker;
     private NetworkInterface networkInterface;
     private ControlPanel state;
+
     /**
      * Defines the input from terminal, screen or key pad
      *
@@ -65,6 +68,7 @@ public class ControlPanel implements Panel{
         // TODO: implement sendControlMsg and return true if successful, false otherwise.
         return false;
     }
+
     /**
      * Contains the current state of the {@linkplain ControlPanel} object.
      * @return {@linkplain ControlPanelMomento}
@@ -73,6 +77,7 @@ public class ControlPanel implements Panel{
         //println "Originator: Saving to ControlPanelMomento."
         return new ControlPanelMomento(this.state);
     }
+
     /**
      * Setting a new internal state of the {@linkplain ControlPanel}
      * @param state the current state of the {@linkplain ControlPanel}
@@ -80,6 +85,7 @@ public class ControlPanel implements Panel{
     public void setState(ControlPanel state){
         this.state = state;
     }
+
     /**
      * Restores the {@linkplain ControlPanel} to a previous state
      * @param controlPanelMomento the {@linkplain ControlPanelMomento} containing the

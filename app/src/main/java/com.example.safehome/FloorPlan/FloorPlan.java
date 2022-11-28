@@ -1,10 +1,13 @@
 package com.example.safehome.FloorPlan;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.example.safehome.Wall.Coordinates;
 
 import java.util.Map;
 
 public class FloorPlan implements FPlan{
+    private static final Logger log = LoggerFactory.getLogger(FloorPlan.class);
     private FType type;
     private String name;
     private String dimensions;
