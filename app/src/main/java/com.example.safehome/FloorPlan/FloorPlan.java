@@ -3,6 +3,7 @@ package com.example.safehome.FloorPlan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.safehome.Wall.Coordinates;
+import com.example.safehome.Wall.Wall;
 
 import java.util.Map;
 
