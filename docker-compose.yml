@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  safehome:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        HOSTNAME: delliusalexander.com
+    container_name: com.example.safehome
+    user: root
+    hostname: delliusalexander.com delliusalexander
+    working_dir: /home/gradle/app
+    env_file:
+      - .env
+    volumes:
+      - ./:/home/gradle/app
+    ports:
+      - "1981:1981"
+    networks:
+      network:
+# Define application network
+networks:
+  network:
+    driver: bridge
+    ipam:
+      driver: default
+# Define mongodb volume
+volumes:
+  app-data: null

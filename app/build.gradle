@@ -1,0 +1,85 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+}
+
+android {
+    namespace 'com.example.safehome'
+    compileSdk 33
+    buildToolsVersion "33.0.1"
+    defaultConfig {
+        applicationId "com.example.safehome"
+        minSdk 25
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // needed to use view bindings api
+    buildFeatures {
+        viewBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.annotation:annotation:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    // http client
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.14.0'
+    implementation 'com.google.code.gson:gson:2.9.0'
+    // Logging dependencies
+    testImplementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.36', ext: 'pom'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.3'
+    // androidx dependencies
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // Ktor includes a multiplatform asynchronous HTTP client.
+    // Ktor-client-core is a core dependency that provides the main client functionality,
+//    implementation("io.ktor:ktor-client-core:$ktor_version")
+    // while ktor-client-cio is a dependency for an engine processing network requests.
+//    implementation("io.ktor:ktor-client-cio:$ktor_version")
+    // functional testing for an activity
+    //noinspection GradleCompatible
+    androidTestImplementation "androidx.test:rules:1.5.0"
+    androidTestImplementation "androidx.test.ext:junit:1.1.4"
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    // for ui testing
+    androidTestImplementation "androidx.test.espresso:espresso-core:$expresso_version"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$expresso_version"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$expresso_version"
+    androidTestImplementation "androidx.test:runner:1.5.1"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
+    testImplementation 'junit:junit:4.13.2'
+
+}
+
+task cleanBuild(type: Delete) {
+    delete rootProject.buildDir
+}
