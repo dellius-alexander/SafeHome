@@ -15,9 +15,6 @@ import com.example.safehome.databinding.NavigationPaneBinding
 import com.google.android.material.navigation.NavigationView
 
 
-var userID:String? = ""
-var user_name:String? = ""
-
 open class NavigationPane: AppCompatActivity() {
     private lateinit var navigationPaneBinding: NavigationPaneBinding
     private lateinit var headerBinding: HeaderBinding

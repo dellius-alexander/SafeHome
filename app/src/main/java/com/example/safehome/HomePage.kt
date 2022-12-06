@@ -18,35 +18,11 @@ class HomePage : NavigationPane() {
 
     private val mRunnable= Runnable {
 
-
     }
 
     private fun fetchJson() {
+      // TODO: Implement parsing messages received from json object
 
-//        println("Attempting")
-//        // Get all the messages from the server
-//        // https://delliusalexander.com/api/v1/message/get/?user=jane@example.com&messagesPerPage=20&token=<place token here>
-//        val url = "https://delliusalexander.com/api/v1/message/get/?user=jane@example.com&messagesPerPage=20"
-//
-//        val request = Request.Builder().url(url).build()
-//
-//        val client = OkHttpClient()
-//
-//        client.newCall(request).enqueue(object : Callback {
-//
-//            override fun onResponse(call: okhttp3.Call?, response: okhttp3.Response?) {
-//                val body = response?.body()?.string()
-//
-//                val gson = GsonBuilder().create()
-//
-//                // TODO: Implement parsing messages received from json object
-//
-//            }
-//
-//            override fun onFailure(call: okhttp3.Call?, e: IOException?) {
-//                println("Failed to execute request")
-//            }
-//        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -10,14 +10,11 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.safehome.databinding.ActivityLoginPageBinding
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
-import java.security.Timestamp
 import javax.net.ssl.*
 
 
