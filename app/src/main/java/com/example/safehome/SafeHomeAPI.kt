@@ -96,7 +96,7 @@ object SafeHomeAPI {
             val newClient = trustAllCertsClient
             println("Attempting login..................................................")
             val request = Request.Builder()
-                .url("http://10.0.0.191:8080/api/v1/user/login/?email=$username&password=$password")
+                .url("https://10.0.0.191:443/api/v1/user/login/?email=$username&password=$password")
 
 //                .url("http://10.0.0.191:8080/api/v1/user/login/?email=$username&password=$password")
                 .build()
@@ -140,7 +140,7 @@ object SafeHomeAPI {
 
             println("Attempting Register..................................................")
             val request = Request.Builder()
-                .url("http://10.0.0.191:8080/api/v1/user/register/?")
+                .url("https://10.0.0.191:443/api/v1/user/register/?")
                 .post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonRequest.toString()))
                 .build()
             println("Request Object: ${request.toString()}")

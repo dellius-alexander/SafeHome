@@ -1,25 +1,26 @@
 package com.example.safehome
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.StrictMode
-import android.os.StrictMode.ThreadPolicy
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.safehome.databinding.ActivityLoginPageBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
+import java.util.concurrent.Executor
 import javax.net.ssl.*
 
 
 class LoginPage : AppCompatActivity() {
     private lateinit var loginPageBinding: ActivityLoginPageBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginPageBinding = ActivityLoginPageBinding.inflate(layoutInflater)
@@ -63,48 +64,47 @@ class LoginPage : AppCompatActivity() {
                 return
             }
 
-            /**
-             * Implement runnable for child thread usage
-             */
-            val mRunnable: Runnable = Runnable {
-                /**
-                 * Disable strict thread policy
-                 */
-                if (Build.VERSION.SDK_INT > 9) {
-                    val policy = ThreadPolicy.Builder().permitAll().build()
-                    StrictMode.setThreadPolicy(policy)
-                }
-                /**
-                 * Capture the response
-                 */
-                val response  = SafeHomeAPI.login(userId, password)
-                /**
-                 * Check response for success or error message and send to client via toast message
-                 */
-                val jsonData: String?
-                val jsonObject: JSONObject?
-                if(response === null){
-                    throw NullPointerException("Response body is null.  Incorrect login attempt or server error need further analysis.")
-                } else {
-                    jsonData= response.body()?.string()
-                    jsonObject = jsonData?.let { JSONObject(it) }
-                    println("Json Object: ")
-                    println(jsonObject)
-                    if (jsonObject?.has("successMsg") == true) {
-                        Toast.makeText(this, jsonObject.get("successMsg").toString(), Toast.LENGTH_LONG).show()
-                        val homepage: Intent = Intent(this, HomePage::class.java)
-                        homepage.putExtra("emailId", jsonObject.get("name").toString())
-                        homepage.putExtra("nameId", jsonObject.get("username").toString())
-                        startActivity(homepage)
+            var response: Response?  =  null
+            var jsonStringData: String? = null
+            var jsonReponseBody: JSONObject?  = null
 
-                    } else if (jsonObject?.has("error") == true){
-                        Toast.makeText(this, jsonObject.get("error").toString(), Toast.LENGTH_LONG).show()
-                        startActivity(Intent(this, LoginPage::class.java))
+            runBlocking {
+                val job = launch(Dispatchers.Default) {
+                    println("${Thread.currentThread()} has run.")
+                    /**
+                     * Capture the response
+                     */
+                    response  = SafeHomeAPI.login(userId, password)
+
+                    // check initial response
+                    if(response === null){
+                        throw NullPointerException("Response body is null.  Incorrect login attempt or server error need further analysis.")
+                    } else {
+                        jsonStringData = response!!.body()?.string()
+                        jsonReponseBody = jsonStringData?.let { JSONObject(it) }
+                        println("Json Object: ")
+                        println(jsonReponseBody)
+
                     }
                 }
+                job.start()
             }
-            val mDelayHandler = Handler()
-            mDelayHandler!!.postDelayed(mRunnable, 1000)
+
+            /**
+             * Check response body for success or error message and send to client via toast message
+             */
+            if (jsonReponseBody?.has("successMsg") == true) {
+                Toast.makeText(this, jsonReponseBody!!.get("successMsg").toString(), Toast.LENGTH_LONG).show()
+                val homepage: Intent = Intent(this, HomePage::class.java)
+                homepage.putExtra("emailId", jsonReponseBody!!.get("name").toString())
+                homepage.putExtra("nameId", jsonReponseBody!!.get("username").toString())
+                startActivity(homepage)
+
+            } else if (jsonReponseBody?.has("error") == true){
+                Toast.makeText(this, jsonReponseBody!!.get("error").toString(), Toast.LENGTH_LONG).show()
+                startActivity(Intent(this, LoginPage::class.java))
+            }
+
 
         } catch (e: IOException) {
             println(e.message)

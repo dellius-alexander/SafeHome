@@ -24,22 +24,20 @@ open class NavigationPane: AppCompatActivity() {
     fun onCreateDrawer(mDrawerLayout: DrawerLayout) {
         navigationPaneBinding = NavigationPaneBinding.inflate(layoutInflater)
         headerBinding = HeaderBinding.inflate(layoutInflater)
-//        val navigationView: NavigationView = navigationPaneBinding.navView
-//        val headerView = navigationView.getHeaderView(0)
-//        val emailId: TextView = headerBinding.emailID
-//        val nameId: TextView =  headerBinding.nameID
 
         val navigationView:NavigationView = findViewById(R.id.nav_view)
         val headerView = navigationView.getHeaderView(0)
         val emailId: TextView = headerView.findViewById(R.id.email_ID)
         val nameId: TextView = headerView.findViewById(R.id.name_ID)
 
+        // get parsed user info received from server response body
+        // update the emailId and nameId values with response objects
         val extras = intent.extras
-        if (extras != null) {
+        if (extras != null) { //The key argument here must match that used in the other activity
             emailId.text = extras.getString("emailId")
             nameId.text = extras.getString("nameId")
             println("Email: ${emailId.text} | Name: ${nameId.text}")
-            //The key argument here must match that used in the other activity
+
         } else {
             println("Bundle extras not passed to Navigation pane............")
         }
@@ -52,7 +50,7 @@ open class NavigationPane: AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             menuItem.isChecked = true
             mDrawerLayout.closeDrawers()
-
+            // Drawer menu selection
             when (menuItem.itemId) {
                 R.id.home -> {
                     val homepage: Intent = Intent(this, HomePage::class.java)
@@ -61,7 +59,7 @@ open class NavigationPane: AppCompatActivity() {
                     startActivity(homepage)
                 }
                 R.id.contact -> {
-                    val url = "www.profile.delliusalexander.com"
+                    val url = "https://profile.delliusalexander.com"
                     openUrl(url)
                 }
                 R.id.logout -> {
@@ -74,6 +72,9 @@ open class NavigationPane: AppCompatActivity() {
         }
     }
 
+    /**
+     * Toggle item selection
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (mToggle.onOptionsItemSelected(item)){
             return true

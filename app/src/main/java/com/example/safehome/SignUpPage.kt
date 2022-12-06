@@ -2,14 +2,14 @@ package com.example.safehome
 
 
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.StrictMode
 import android.text.TextUtils
 import android.widget.Toast
 import com.example.safehome.databinding.ActivitySignUpPageBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
@@ -63,47 +63,47 @@ class SignUpPage : AppCompatActivity() {
             Toast.makeText(this, "Password did not match", Toast.LENGTH_LONG).show()
             return
         }
-        // TODO: Implement post request to api server path "api/v1/user/register/user={user}"
+
         try {
-        val mRunnable: Runnable = Runnable {
-            /**
-             * Disable strict thread policy
-             */
-            if (Build.VERSION.SDK_INT > 9) {
-                val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-                StrictMode.setThreadPolicy(policy)
-            }
-            /**
-             * Capture the response
-             */
-            val response: Response? = SafeHomeAPI.register(firstName + " " + lastName, mailAddr, dob, pwd)
+            var response: Response? = null
+            var jsonStringData: String? = null
+            var jsonResponseBody: JSONObject? = null
 
-            /**
-             * Check response for success or error message and send to client via toast message
-             */
-            val jsonData: String?
-            val jsonObject: JSONObject?
-            if(response === null){
-                throw NullPointerException("Response body is null.  Incorrect login attempt or server error need further analysis.")
-            } else {
-                jsonData= response.body()?.string()
-                jsonObject = jsonData?.let { JSONObject(it) }
-                println("Json Object: ")
-                println(jsonObject)
-                if (jsonObject?.has("successMsg") == true) {
-                    Toast.makeText(this, jsonObject.get("successMsg").toString(), Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this, LoginPage::class.java))
+            runBlocking {
+                val job = launch(Dispatchers.Default) {
+                    println("${Thread.currentThread()} has run.")
+                    /**
+                     * Capture the response
+                     */
+                    response = SafeHomeAPI.register(firstName + " " + lastName, mailAddr, dob, pwd)
+                    // check the initial response
+                    if(response === null){
+                        throw NullPointerException("Response body is null.  Incorrect login attempt or server error need further analysis.")
+                    } else {
+                        jsonStringData = response!!.body()?.string()
+                        jsonResponseBody = jsonStringData?.let { JSONObject(it) }
+                        println("Json Object: ")
+                        println(jsonResponseBody)
 
-                } else if (jsonObject?.has("error") == true){
-                    Toast.makeText(this, jsonObject.get("error").toString(), Toast.LENGTH_LONG).show()
-                    val signUpPage: Intent = Intent(this, SignUpPage::class.java)
-                    startActivity(signUpPage)
+                    }
                 }
+                job.start()
             }
-        }
 
-        val mDelayHandler = Handler()
-        mDelayHandler!!.postDelayed(mRunnable, 1000)
+            /**
+             * Check response body for success or error message and send to client via toast message
+             */
+            // check for success or error
+            if (jsonResponseBody?.has("successMsg") == true) {
+                Toast.makeText(this, jsonResponseBody!!.get("successMsg").toString(), Toast.LENGTH_LONG).show()
+                startActivity(Intent(this, LoginPage::class.java))
+
+            } else if (jsonResponseBody?.has("error") == true){
+                Toast.makeText(this, jsonResponseBody!!.get("error").toString(), Toast.LENGTH_LONG).show()
+                val signUpPage: Intent = Intent(this, SignUpPage::class.java)
+                startActivity(signUpPage)
+            }
+
 
     } catch (e: IOException) {
         println(e.message)
