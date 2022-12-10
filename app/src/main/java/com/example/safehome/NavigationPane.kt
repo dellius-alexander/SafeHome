@@ -91,8 +91,8 @@ open class NavigationPane: AppCompatActivity() {
         val googleChromeNavigatePrefix = "googlechrome://navigate?url="
         val newUrl: String?
         try {
-            newUrl = if (!url.startsWith("http://") && !url.startsWith("https://")) {
-                "http://$url"
+            newUrl = if (!url.startsWith("http://")) {
+                "https://$url"
             } else {
                 url
             }

@@ -3,11 +3,6 @@ package com.example.safehome
 import android.os.Bundle
 import android.os.Handler
 import androidx.drawerlayout.widget.DrawerLayout
-import com.google.gson.GsonBuilder
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import java.io.IOException
 import com.example.safehome.databinding.ActivityHomePageBinding
 
 

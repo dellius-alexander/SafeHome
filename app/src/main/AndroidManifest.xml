@@ -5,9 +5,11 @@
     package="com.example.safehome">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<!--android:usesCleartextTraffic="true"-->
+    <!--
+    // use clear text only when not using https or TLS encryption to message transport
+    android:usesCleartextTraffic="true"
+     -->
     <application
-
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

@@ -53,3 +53,21 @@ Below is a UML diagram of the system architecture.
 
 
 [![Login Sequence](./docs/images/SafeHome.jpg)](./docs/images/SafeHome.jpg "UML Diagram")
+
+
+
+
+```kotlin
+// creates a credential object and json message
+var cred =  Credentials.let {
+    it.basic(email!!, password!!, Charsets.UTF_8)
+}
+val jsonRequest = JSONObject("""{
+    "name":"$name",
+    "credentials":"$cred",
+    "dob":"$dob",
+    }""".trimMargin()).toString()
+
+val encodedStringPost = encryptMessage(jsonRequest, serverPublicKey)
+
+```

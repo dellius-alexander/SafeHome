@@ -14,7 +14,6 @@ import org.json.JSONObject
 import java.io.IOException
 import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
-import java.util.concurrent.Executor
 import javax.net.ssl.*
 
 
@@ -47,7 +46,6 @@ class LoginPage : AppCompatActivity() {
         return
     }
 
-
     private fun loginUserAccount(){
         try {
 
@@ -64,9 +62,9 @@ class LoginPage : AppCompatActivity() {
                 return
             }
 
-            var response: Response?  =  null
-            var jsonStringData: String? = null
-            var jsonReponseBody: JSONObject?  = null
+
+            var jsonBody: JSONObject?  = null
+            val safeHomeAPI = SafeHomeAPI()
 
             runBlocking {
                 val job = launch(Dispatchers.Default) {
@@ -74,18 +72,7 @@ class LoginPage : AppCompatActivity() {
                     /**
                      * Capture the response
                      */
-                    response  = SafeHomeAPI.login(userId, password)
-
-                    // check initial response
-                    if(response === null){
-                        throw NullPointerException("Response body is null.  Incorrect login attempt or server error need further analysis.")
-                    } else {
-                        jsonStringData = response!!.body()?.string()
-                        jsonReponseBody = jsonStringData?.let { JSONObject(it) }
-                        println("Json Object: ")
-                        println(jsonReponseBody)
-
-                    }
+                    jsonBody = safeHomeAPI.login(userId, password)
                 }
                 job.start()
             }
@@ -93,18 +80,19 @@ class LoginPage : AppCompatActivity() {
             /**
              * Check response body for success or error message and send to client via toast message
              */
-            if (jsonReponseBody?.has("successMsg") == true) {
-                Toast.makeText(this, jsonReponseBody!!.get("successMsg").toString(), Toast.LENGTH_LONG).show()
-                val homepage: Intent = Intent(this, HomePage::class.java)
-                homepage.putExtra("emailId", jsonReponseBody!!.get("name").toString())
-                homepage.putExtra("nameId", jsonReponseBody!!.get("username").toString())
+            if (jsonBody!!.has("successMsg")) {
+                Toast.makeText(this, jsonBody!!.get("successMsg").toString(), Toast.LENGTH_LONG).show()
+                val homepage = Intent(this, HomePage::class.java)
+                homepage.putExtra("emailId", jsonBody!!.get("name").toString())
+                homepage.putExtra("nameId", jsonBody!!.get("username").toString())
                 startActivity(homepage)
-
-            } else if (jsonReponseBody?.has("error") == true){
-                Toast.makeText(this, jsonReponseBody!!.get("error").toString(), Toast.LENGTH_LONG).show()
+            } else if (jsonBody!!.has("error") || jsonBody!!.has("errorMessage")){
+                Toast.makeText(this, jsonBody!!.get("error").toString(), Toast.LENGTH_LONG).show()
+                startActivity(Intent(this, LoginPage::class.java))
+            }else if (jsonBody!!.has("errorMessage")){
+                Toast.makeText(this, "Login failed, please try again...", Toast.LENGTH_LONG).show()
                 startActivity(Intent(this, LoginPage::class.java))
             }
-
 
         } catch (e: IOException) {
             println(e.message)

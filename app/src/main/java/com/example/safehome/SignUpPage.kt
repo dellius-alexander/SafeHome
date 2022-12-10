@@ -10,7 +10,6 @@ import com.example.safehome.databinding.ActivitySignUpPageBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
 import java.security.KeyManagementException
@@ -65,9 +64,8 @@ class SignUpPage : AppCompatActivity() {
         }
 
         try {
-            var response: Response? = null
-            var jsonStringData: String? = null
-            var jsonResponseBody: JSONObject? = null
+            var jsonResponse: JSONObject? = null
+            val safeHomeAPI = SafeHomeAPI()
 
             runBlocking {
                 val job = launch(Dispatchers.Default) {
@@ -75,33 +73,27 @@ class SignUpPage : AppCompatActivity() {
                     /**
                      * Capture the response
                      */
-                    response = SafeHomeAPI.register(firstName + " " + lastName, mailAddr, dob, pwd)
+                    jsonResponse = safeHomeAPI.register("$firstName $lastName", mailAddr, dob, pwd)
                     // check the initial response
-                    if(response === null){
+                    if(jsonResponse === null){
                         throw NullPointerException("Response body is null.  Incorrect login attempt or server error need further analysis.")
-                    } else {
-                        jsonStringData = response!!.body()?.string()
-                        jsonResponseBody = jsonStringData?.let { JSONObject(it) }
-                        println("Json Object: ")
-                        println(jsonResponseBody)
-
                     }
                 }
                 job.start()
             }
-
+            println("Response Message: $jsonResponse")
             /**
              * Check response body for success or error message and send to client via toast message
              */
             // check for success or error
-            if (jsonResponseBody?.has("successMsg") == true) {
-                Toast.makeText(this, jsonResponseBody!!.get("successMsg").toString(), Toast.LENGTH_LONG).show()
+            if (jsonResponse?.has("successMsg") == true) {
+                Toast.makeText(this, jsonResponse!!.get("successMsg").toString(), Toast.LENGTH_LONG).show()
                 startActivity(Intent(this, LoginPage::class.java))
 
-            } else if (jsonResponseBody?.has("error") == true){
-                Toast.makeText(this, jsonResponseBody!!.get("error").toString(), Toast.LENGTH_LONG).show()
-                val signUpPage: Intent = Intent(this, SignUpPage::class.java)
-                startActivity(signUpPage)
+            } else if (jsonResponse?.has("error") == true){
+                Toast.makeText(this, jsonResponse!!.get("error").toString(), Toast.LENGTH_LONG).show()
+//                val signUpPage: Intent = Intent(this, SignUpPage::class.java)
+//                startActivity(signUpPage)
             }
 
 
@@ -110,19 +102,19 @@ class SignUpPage : AppCompatActivity() {
         e.printStackTrace()
         Toast.makeText(this, "...", Toast.LENGTH_LONG).show()
         // reset login process if client fails login attempt
-        startActivity(Intent(this, LoginPage::class.java))
+//        startActivity(Intent(this, LoginPage::class.java))
     } catch (e: NoSuchAlgorithmException) {
         println(e)
         // reset login process if client fails login attempt
-        startActivity(Intent(this, LoginPage::class.java))
+//        startActivity(Intent(this, LoginPage::class.java))
     } catch (e: KeyManagementException) {
         println(e)
         // reset login process if client fails login attempt
-        startActivity(Intent(this, LoginPage::class.java))
+//        startActivity(Intent(this, LoginPage::class.java))
     } catch (e: Exception) {
         println(e)
         // reset login process if client fails login attempt
-        startActivity(Intent(this, LoginPage::class.java))
+//        startActivity(Intent(this, LoginPage::class.java))
     }
     }
 }
