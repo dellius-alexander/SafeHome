@@ -65,15 +65,16 @@ class SignUpPage : AppCompatActivity() {
 
         try {
             var jsonResponse: JSONObject? = null
-            val safeHomeAPI = SafeHomeAPI()
-
+            /**
+             * Execute signup attempt
+             */
             runBlocking {
                 val job = launch(Dispatchers.Default) {
                     println("${Thread.currentThread()} has run.")
                     /**
                      * Capture the response
                      */
-                    jsonResponse = safeHomeAPI.register("$firstName $lastName", mailAddr, dob, pwd)
+                    jsonResponse = SafeHomeAPI.register("$firstName $lastName", mailAddr, dob, pwd)
                     // check the initial response
                     if(jsonResponse === null){
                         throw NullPointerException("Response body is null.  Incorrect login attempt or server error need further analysis.")

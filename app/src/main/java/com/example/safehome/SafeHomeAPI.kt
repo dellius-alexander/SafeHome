@@ -27,11 +27,20 @@ import javax.net.ssl.X509TrustManager
 
 
 
-class SafeHomeAPI {
+object SafeHomeAPI {
     /**
-     * Http client used to make server calls.
+     * API address
      */
-    private var client: OkHttpClient.Builder? = null
+    private val API_HOME = "https://192.168.1.81:443"
+
+    /**
+     * Below are the defined Media Types used for transport.
+     * See Mime Types: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+     */
+    private val MEDIA_TYPE_PNG = "image/png".toMediaType()
+    private val MEDIA_TYPE_APP_JSON = "application/json".toMediaType()
+    private val MEDIA_TYPE_XML = "application/xml".toMediaType()
+    private val MEDIA_TYPE_X_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded".toMediaType()
 
     /**
      * Bypass server certificate checks by setting up your own trust manager.
@@ -82,7 +91,7 @@ class SafeHomeAPI {
             sslContext.init(null, trustAllCerts, SecureRandom())
             val sslSocketFactory = sslContext.socketFactory
 
-            client = OkHttpClient.Builder()
+            var client = OkHttpClient.Builder()
             client!!.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
             /**
              * It won't be hard to believe that even after the above tweaks, consuming
@@ -128,7 +137,7 @@ class SafeHomeAPI {
             println("Attempting Login.....................................................")
 
             // get the custom client
-            val newClient = trustAllCertsClient
+            val client = trustAllCertsClient
 
             // create a form body and encode our message
             val formBody: RequestBody = FormBody.Builder()
@@ -137,14 +146,14 @@ class SafeHomeAPI {
 
             // build the request object with our url and form body
             request = Request.Builder()
-                .url("https://10.0.0.191:443/api/v1/user/login/?")
+                .url("$API_HOME/api/v1/user/login/?")
                 .post( body = formBody )
                 .build()
 
             println("Request Object: $request")
 
             // get the server response
-            val response =  newClient.newCall(request).execute()
+            val response =  client!!.newCall(request).execute()
 
 
             // check server response
@@ -188,7 +197,7 @@ class SafeHomeAPI {
         var request: Request? = null
         var response: Response? = null
         try {
-            val newClient = trustAllCertsClient
+            val client = trustAllCertsClient
 
             // get server public key
             val serverPublicKey = getPublicKeyFromServer();
@@ -213,12 +222,12 @@ class SafeHomeAPI {
                 .build()
             // build the request object with our url and form body
             request = Request.Builder()
-                .url("https://10.0.0.191:443/api/v1/user/register/?")
+                .url("$API_HOME/api/v1/user/register/?")
                 .post( body = formBody )
                 .build()
             println("Request Object: $request")
             // send the request and return the response body as json object
-            response = newClient.newCall(request).execute()
+            response = client!!.newCall(request).execute()
             // check server response
             if(response === null){
                 throw NullPointerException("Response body is null.  Incorrect login attempt or server error need further analysis.")
@@ -243,19 +252,19 @@ class SafeHomeAPI {
     private fun getPublicKeyFromServer(): String? {
         var serverPublicKey: String? = null
         try {
-            val newClient = trustAllCertsClient
+            val client = trustAllCertsClient
 
             /**
              * Get the server certificate
              */
             var request = Request.Builder()
-                .url("https://10.0.0.191:443/api/v1/certificate")
+                .url("$API_HOME/api/v1/certificate")
                 .get()
                 .build()
 
             println("Request Object: ${request.toString()}")
             // get the server response
-            var response = newClient.newCall(request).execute()
+            var response = client!!.newCall(request).execute()
 
             // check server response
             if(response === null){
@@ -273,16 +282,6 @@ class SafeHomeAPI {
         }
         return serverPublicKey
     }
-
-    /**
-     * Below are the defined Media Types used for transport.
-     * See Mime Types: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
-     */
-    companion object {
-        private val MEDIA_TYPE_PNG = "image/png".toMediaType()
-        private val MEDIA_TYPE_APP_JSON = "application/json".toMediaType()
-        private val MEDIA_TYPE_XML = "application/xml".toMediaType()
-        private val MEDIA_TYPE_X_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded".toMediaType()
 
         /**
          * Loads a public key from its string value
@@ -328,7 +327,7 @@ class SafeHomeAPI {
          * @return [String] the encrypted message
          */
         @Throws(Exception::class)
-        fun encryptMessage(plainText: String, publicKey: String): String? {
+        private fun encryptMessage(plainText: String, publicKey: String): String? {
             println("Attempting to encrypt message")
             var encodedString: String? = null
             try {
@@ -348,6 +347,7 @@ class SafeHomeAPI {
                  * DESede/ECB/PKCS5Padding (168)
                  * RSA/ECB/PKCS1Padding (1024, 2048)
                  * RSA/ECB/OAEPWithSHA-1AndMGF1Padding (1024, 2048)
+                 * RSA/None/OAEPWITHSHA-256ANDMGF1PADDING (1024, 2048)
                  * RSA/ECB/OAEPWithSHA-256AndMGF1Padding (1024, 2048)
                  */
                 val cipher = Cipher.getInstance("RSA/None/OAEPWITHSHA-256ANDMGF1PADDING")
@@ -399,7 +399,5 @@ class SafeHomeAPI {
         }
 
 
-
-    }
 
 }

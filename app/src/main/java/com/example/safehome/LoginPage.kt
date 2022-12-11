@@ -64,15 +64,16 @@ class LoginPage : AppCompatActivity() {
 
 
             var jsonBody: JSONObject?  = null
-            val safeHomeAPI = SafeHomeAPI()
-
+            /**
+             * Execute login attempt
+             */
             runBlocking {
                 val job = launch(Dispatchers.Default) {
                     println("${Thread.currentThread()} has run.")
                     /**
                      * Capture the response
                      */
-                    jsonBody = safeHomeAPI.login(userId, password)
+                    jsonBody = SafeHomeAPI.login(userId, password)
                 }
                 job.start()
             }
