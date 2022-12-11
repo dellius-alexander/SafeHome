@@ -74,7 +74,7 @@ class SignUpPage : AppCompatActivity() {
                     /**
                      * Capture the response
                      */
-                    jsonResponse = SafeHomeAPI.register("$firstName $lastName", mailAddr, dob, pwd)
+                    jsonResponse = SafeHomeUserAPI.register("$firstName $lastName", mailAddr, dob, pwd)
                     // check the initial response
                     if(jsonResponse === null){
                         throw NullPointerException("Response body is null.  Incorrect login attempt or server error need further analysis.")

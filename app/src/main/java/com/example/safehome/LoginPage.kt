@@ -73,7 +73,7 @@ class LoginPage : AppCompatActivity() {
                     /**
                      * Capture the response
                      */
-                    jsonBody = SafeHomeAPI.login(userId, password)
+                    jsonBody = SafeHomeUserAPI.login(userId, password)
                 }
                 job.start()
             }

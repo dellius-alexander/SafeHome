@@ -26,12 +26,14 @@ import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
 
-
-object SafeHomeAPI {
+/**
+ * SafeHomeUserAPI controls access to the /api/v1/user paths
+ */
+object SafeHomeUserAPI {
     /**
      * API address
      */
-    private val API_HOME = "https://192.168.1.81:443"
+    private const val API_HOME = "https://192.168.1.81:443"
 
     /**
      * Below are the defined Media Types used for transport.
